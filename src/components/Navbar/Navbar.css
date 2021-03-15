@@ -1,0 +1,16 @@
+.navbar-row{
+    height: 55px;
+    font-size: 35px;
+    color: #fff;
+    align-items: center;
+    background-color: deeppink;
+}
+.navbar-row .logo{
+    padding: 0 0 0 10px;
+    text-align: left;
+    font-weight: bold;
+}
+.navbar-row .menu{
+    padding: 0 10px 0 0;
+    text-align: right;
+}
