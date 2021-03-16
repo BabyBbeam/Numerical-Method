@@ -7,6 +7,7 @@
     align-items: center;
     background-color: deeppink;
 }
+
 .navbar-row .logo{
     display: inline-flex;
     vertical-align: middle;
@@ -51,5 +52,20 @@
     font-weight: bold;
 }
 
+@media only screen and (max-width: 620px){
+    .navbar-row{
+        height: auto;
+    }
+    .navbar-row .logo{
+        text-align: center;
+        min-width: 100%;
+        justify-content: center;
+    }
+    .navbar-row .menu{
+        min-width: 100%;
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+}
 
 

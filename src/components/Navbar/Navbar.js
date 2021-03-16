@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd'
-import { Menu, Dropdown, Button, Space } from 'antd';
+import { Menu, Dropdown, Button } from 'antd';
 import './Navbar.css'
 
 const roet_menu = (
@@ -17,10 +17,10 @@ const roet_menu = (
 const matrix_menu = (
     <Menu className='roet-menu'>
         <Menu.Item className='roet-menu-item'> 
-            Bisection Method
+            Cramer's Rule
         </Menu.Item>
         <Menu.Item className='roet-menu-item'>
-            False-position Method
+            Gauss Eliminate Method
         </Menu.Item>
     </Menu>
 );
@@ -38,15 +38,11 @@ class Navbar extends Component {
                             <Dropdown overlay={roet_menu} placement="bottomCenter">
                                 <Button>Root of Equations</Button>
                             </Dropdown>
-                            {/* <span style={{width:'5px'}}></span> */}
                             <Dropdown overlay={matrix_menu} placement="bottomCenter">
                                 <Button>Matrix</Button>
                             </Dropdown>
                         </Col>
                     </Row>
-                </div>
-                <div>
-                    this is div
                 </div>
             </div>
         )
