@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Row, Col } from 'antd'
 import { Menu, Dropdown, Button } from 'antd';
 import './Navbar.css'
@@ -6,7 +7,7 @@ import './Navbar.css'
 const roet_menu = (
     <Menu className='roet-menu'>
         <Menu.Item className='roet-menu-item'> 
-            Bisection Method
+            <Link to='/bisection' replace>Bisection Method</Link>
         </Menu.Item>
         <Menu.Item className='roet-menu-item'>
             False-position Method
