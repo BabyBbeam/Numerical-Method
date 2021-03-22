@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Numerical-Method/static/css/main.5dd62bc9.chunk.css",
+    "main.js": "/Numerical-Method/static/js/main.e086ee25.chunk.js",
+    "main.js.map": "/Numerical-Method/static/js/main.e086ee25.chunk.js.map",
+    "runtime-main.js": "/Numerical-Method/static/js/runtime-main.7ec8424c.js",
+    "runtime-main.js.map": "/Numerical-Method/static/js/runtime-main.7ec8424c.js.map",
+    "static/css/2.98e7ac70.chunk.css": "/Numerical-Method/static/css/2.98e7ac70.chunk.css",
+    "static/js/2.6af3af09.chunk.js": "/Numerical-Method/static/js/2.6af3af09.chunk.js",
+    "static/js/2.6af3af09.chunk.js.map": "/Numerical-Method/static/js/2.6af3af09.chunk.js.map",
+    "static/js/3.9ce9e850.chunk.js": "/Numerical-Method/static/js/3.9ce9e850.chunk.js",
+    "static/js/3.9ce9e850.chunk.js.map": "/Numerical-Method/static/js/3.9ce9e850.chunk.js.map",
+    "index.html": "/Numerical-Method/index.html",
+    "static/css/2.98e7ac70.chunk.css.map": "/Numerical-Method/static/css/2.98e7ac70.chunk.css.map",
+    "static/css/main.5dd62bc9.chunk.css.map": "/Numerical-Method/static/css/main.5dd62bc9.chunk.css.map",
+    "static/js/2.6af3af09.chunk.js.LICENSE.txt": "/Numerical-Method/static/js/2.6af3af09.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7ec8424c.js",
+    "static/css/2.98e7ac70.chunk.css",
+    "static/js/2.6af3af09.chunk.js",
+    "static/css/main.5dd62bc9.chunk.css",
+    "static/js/main.e086ee25.chunk.js"
+  ]
+}
