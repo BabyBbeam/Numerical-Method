@@ -10,16 +10,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <HashRouter>
-        <Navbar />
-        <div className="content">
-          
+          <Navbar />
+          <div className="content">
             <Redirect exact from="/" to="/bisection" />
             <Switch>
               <Route exact path="/bisection" component={Bisection} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>
-          
-        </div>
+          </div>
         </HashRouter>
         <div className="footer">
         da
