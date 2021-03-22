@@ -28,16 +28,38 @@
     "profile": {
       "name": "typicode"
     },
-    "user":[
+    "root_of_eqution":[
         {
             "id": 1,
-            "pass": "1150",
-            "salary": "1111"
+            "equation": "x^4-13",
+            "initial_x": "1",
+            "xl": "1.5",
+            "xr": "2.0",
+            "error": "0.00001"
         },
         {
             "id": 2,
-            "pass": "1111",
-            "salary": "1000"
+            "equation": "43x-1",
+            "initial_x": "1",
+            "xl": "0.2",
+            "xr": "0.3",
+            "error": "0.00001"
+        },
+        {
+            "id": 3,
+            "equation": "x/2 + 1/4",
+            "initial_x": "0",
+            "xl": "1.5",
+            "xr": "2.0",
+            "error": "0.00001"
+        },
+        {
+            "id": 4,
+            "equation": "x^2 - 7",
+            "initial_x": "0",
+            "xl": "2.0",
+            "xr": "3.0",
+            "error": "0.00001"
         }
     ]
   }
