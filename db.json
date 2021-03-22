@@ -27,5 +27,17 @@
     ],
     "profile": {
       "name": "typicode"
-    }
+    },
+    "user":[
+        {
+            "id": 1,
+            "pass": "1150",
+            "salary": "1111"
+        },
+        {
+            "id": 2,
+            "pass": "1111",
+            "salary": "1000"
+        }
+    ]
   }
