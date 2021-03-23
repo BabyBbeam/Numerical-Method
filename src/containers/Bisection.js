@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import { Row, Col , Input, Button} from 'antd'
+import { Row, Col , Input, Button, Table } from 'antd'
+import axios from 'axios'
+import { calBisection } from '../components/calculateROE'
 import './Bisection.css'
+
+const Url = "https://raw.githubusercontent.com/BabyBbeam/Numerical-Method/main/db.json"
 
 class Bisection extends Component {
 
@@ -9,7 +13,32 @@ class Bisection extends Component {
         xl : null,
         xr : null,
         error : null,
-        isCal : false
+        isCal : false,
+        iterationColumns : [
+            {
+                title: 'Iteration',
+                dataIndex: 'iteration'
+            },
+            {
+                title: 'X',
+                dataIndex: 'x'
+            },
+            {
+                title: 'Error',
+                dataIndex: 'error'
+            }
+        ],
+        iterationData : []
+    }
+
+    onClickCalculate = e =>{
+        try{
+        this.setState({iterationData:calBisection(this.state.fx, this.state.xl, this.state.xr, this.state.error)})
+        this.setState({isCal:true})
+        }
+        catch (err){
+            console.log("error")
+        }
     }
 
     onClickReset = e =>{
@@ -32,7 +61,14 @@ class Bisection extends Component {
         this.setState({error:e.target.value})
     }
 
-    componentDidMount
+    // async componentDidMount(){
+    //     let DATA = null
+    //     await axios.get(Url)
+    //     .then(res => {DATA = res.data.root_of_eqution})
+    //     .catch(err => console.log(err))
+        
+    //     this.setState({fx:DATA[0].equation,xl:DATA[0].xl,xr:DATA[0].xr,error:DATA[0].error})
+    // }
 
     render() {
         return (
@@ -59,9 +95,10 @@ class Bisection extends Component {
                         <Button size='large' type='primary' className='reset-button' onClick={this.onClickReset}>Reset</Button>
                     </Col>
                     <Col span={12}>
-                        <Button size='large' type='primary' className='cal-button'>คำนวณ</Button>
+                        <Button size='large' type='primary' className='cal-button' onClick={this.onClickCalculate}>คำนวณ</Button>
                     </Col>
                 </Row>
+                {this.state.isCal ? <Table columns={this.state.iterationColumns} dataSource={this.state.iterationData} size="middle" />:null}
             </div>
         )
     }
