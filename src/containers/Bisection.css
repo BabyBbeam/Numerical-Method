@@ -11,8 +11,9 @@
 }
 
 .input-form .input-form-fx{
-    width: 70%;
+    width: 90%;
     margin-left: 5px;
+    margin-right: 5px;
 }
 
 .input-form .input-form-init{
@@ -26,6 +27,11 @@
 
 .col-input-err{
     text-align: start;
+}
+
+.input-form-err{
+    margin-right: 5px;
+    width: 70%;
 }
 
 /* .col-reset-button{

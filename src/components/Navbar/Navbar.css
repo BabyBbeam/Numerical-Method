@@ -55,7 +55,7 @@
     font-weight: bold;
 }
 
-@media only screen and (max-width: 620px){
+@media (max-width: 620px){
     .navbar-row{
         height: auto;
     }

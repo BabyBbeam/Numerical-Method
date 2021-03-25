@@ -92,13 +92,13 @@ class Bisection extends Component {
                             Ok
                         </Button>
                     ]}
-                >
+            >
 
                 </Modal>
                 <h1>Bisection Method</h1>
                 <Row className='input-form' type='flex' align='middle'>
                     <Col span={24}>
-                        f(x) :<Input className='input-form-fx' placeholder='Example | x^4-13' value={this.state.fx} onChange={this.OnChangeFx}/>
+                        <span>f(x) :</span><Input className='input-form-fx' placeholder='Example | x^4-13' value={this.state.fx} onChange={this.OnChangeFx}/>
                     </Col>
                 </Row>
                 <Row className='input-form' type='flex' align='middle'>
@@ -109,7 +109,7 @@ class Bisection extends Component {
                         xr :<Input className='input-form-init' placeholder='2.0' value={this.state.xr} onChange={this.OnChangeXr}/>
                     </Col>
                     <Col span={8} className='col-input-err'>
-                        error :<Input className='input-form-init' placeholder='0.00001' value={this.state.error} onChange={this.onChangeErr}/>
+                        error :<Input className='input-form-err' placeholder='0.00001' value={this.state.error} onChange={this.onChangeErr}/>
                     </Col>
                 </Row>
                 <Row type='flex' align='middle' className='row-button'>
