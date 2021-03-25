@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col , Input, Button, Table } from 'antd'
+import { Row, Col , Input, Button, Table, Modal } from 'antd'
 import axios from 'axios'
 import { calBisection } from '../components/calculateROE'
 import './Bisection.css'
@@ -28,7 +28,8 @@ class Bisection extends Component {
                 dataIndex: 'error'
             }
         ],
-        iterationData : []
+        iterationData : [],
+        isModalVisible : false
     }
 
     onClickCalculate = e =>{
@@ -39,6 +40,14 @@ class Bisection extends Component {
         catch (err){
             console.log("error")
         }
+    }
+
+    onClickExample = e =>{
+        this.setState({isModalVisible:true})
+    }
+
+    onClickOk = e =>{
+        this.setState({isModalVisible:false})
     }
 
     onClickReset = e =>{
@@ -73,6 +82,19 @@ class Bisection extends Component {
     render() {
         return (
             <div className='bisection-content'>
+                <Modal
+                    title='ตัวอย่าง'
+                    visible={this.state.isModalVisible} 
+                    onOk={this.onClickOk}
+                    onCancel={this.onClickOk}
+                    footer={[
+                        <Button type='primary' onClick={this.onClickOk}>
+                            Ok
+                        </Button>
+                    ]}
+                >
+
+                </Modal>
                 <h1>Bisection Method</h1>
                 <Row className='input-form' type='flex' align='middle'>
                     <Col span={24}>
@@ -91,11 +113,10 @@ class Bisection extends Component {
                     </Col>
                 </Row>
                 <Row type='flex' align='middle' className='row-button'>
-                    <Col span={12} className='col-reset-button'>
+                    <Col span={24} className='col-button'>
                         <Button size='large' type='primary' className='reset-button' onClick={this.onClickReset}>Reset</Button>
-                    </Col>
-                    <Col span={12}>
                         <Button size='large' type='primary' className='cal-button' onClick={this.onClickCalculate}>คำนวณ</Button>
+                        <Button size='large' type='primary' className='example-button' onClick={this.onClickExample}>ตัวอย่าง</Button>
                     </Col>
                 </Row>
                 {this.state.isCal ? <Table columns={this.state.iterationColumns} dataSource={this.state.iterationData} size="middle" />:null}
