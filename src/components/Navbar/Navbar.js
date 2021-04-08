@@ -5,14 +5,14 @@ import { Menu, Dropdown, Button } from 'antd';
 import './Navbar.css'
 
 const roet_menu = (
-    <Menu className='roet-menu'>
-        <Menu.Item className='roet-menu-item'> 
-            <Link to='/bisection' replace>Bisection Method</Link>
-        </Menu.Item>
-        <Menu.Item className='roet-menu-item'>
-            False-position Method
-        </Menu.Item>
-    </Menu>
+  <Menu className="roet-menu">
+    <Menu.Item className="roet-menu-item">
+      <Link to="/bisection" replace>Bisection Method</Link>
+    </Menu.Item>
+    <Menu.Item className="roet-menu-item">
+      <Link to="/falseposition" replace>False-position Method</Link>
+    </Menu.Item>
+  </Menu>
 );
 
 const matrix_menu = (

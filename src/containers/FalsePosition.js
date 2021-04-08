@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Row, Col , Input, Button, Table, Modal } from 'antd'
 import axios from 'axios'
-import { calBisection } from '../components/calculateROE'
+import { calFalsePosition } from '../components/calculateROE'
 import './Content.css'
 
 const Url = "https://raw.githubusercontent.com/BabyBbeam/Numerical-Method/main/db.json"
 
-class Bisection extends Component {
+class FalsePosition extends Component {
 
     state = {
         fx : "",
@@ -33,13 +33,13 @@ class Bisection extends Component {
     }
 
     onClickCalculate = e =>{
-        try{
-            this.setState({iterationData:calBisection(this.state.fx, this.state.xl, this.state.xr, this.state.error)})
+        //try{
+            this.setState({iterationData:calFalsePosition(this.state.fx, this.state.xl, this.state.xr, this.state.error)})
             this.setState({isCal:true})
-        }
-        catch (err){
-            console.log("error")
-        }
+        //}
+        // catch (err){
+        //     console.log("error")
+        // }
     }
 
     onClickExample = e =>{
@@ -95,18 +95,18 @@ class Bisection extends Component {
             >
 
                 </Modal>
-                <h1>Bisection Method</h1>
+                <h1>False-Position Method</h1>
                 <Row className='input-form' type='flex' align='middle'>
                     <Col span={24}>
-                        <span>f(x) :</span><Input className='input-form-fx' placeholder='Example | x^4-13' value={this.state.fx} onChange={this.OnChangeFx} />
+                        <span>f(x) :</span><Input className='input-form-fx' placeholder='Example | 43x-1' value={this.state.fx} onChange={this.OnChangeFx} />
                     </Col>
                 </Row>
                 <Row className='input-form' type='flex' align='middle'>
                     <Col span={8} className='col-input-xl'>
-                        xl :<Input className='input-form-init' placeholder='1.5' value={this.state.xl} onChange={this.OnChangeXl} />
+                        xl :<Input className='input-form-init' placeholder='0.2' value={this.state.xl} onChange={this.OnChangeXl} />
                     </Col>
                     <Col span={8}>
-                        xr :<Input className='input-form-init' placeholder='2.0' value={this.state.xr} onChange={this.OnChangeXr} />
+                        xr :<Input className='input-form-init' placeholder='0.3' value={this.state.xr} onChange={this.OnChangeXr} />
                     </Col>
                     <Col span={8} className='col-input-err'>
                         error :<Input className='input-form-err' placeholder='0.00001' value={this.state.error} onChange={this.onChangeErr} />
@@ -125,4 +125,4 @@ class Bisection extends Component {
     }
 }
 
-export default Bisection
+export default FalsePosition

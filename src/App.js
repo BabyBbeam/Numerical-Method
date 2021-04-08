@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import Bisection from './containers/Bisection';
+import FalsePosition from './containers/FalsePosition';
 
 class App extends React.Component {
 
@@ -15,6 +16,7 @@ class App extends React.Component {
             <Redirect exact from="/" to="/bisection" />
             <Switch>
               <Route exact path="/bisection" component={Bisection} />
+              <Route exact path="/falseposition" component={FalsePosition} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>
           </div>
