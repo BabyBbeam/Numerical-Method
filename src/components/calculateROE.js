@@ -79,3 +79,32 @@ export function calFalsePosition(init_fx, init_xl, init_xr, init_error){
     }
     return data
 }
+
+export function calOnePoint(init_fx, init_x, init_error){
+    let fx = math.parse(init_fx).compile()
+    let x = math.bignumber(init_x)
+    let error = math.bignumber(init_error)
+    let checkError = math.bignumber(Number.MAX_VALUE)
+    let newX = x
+    let data = []
+    let iteration = 1
+
+    while (math.larger(checkError, error)) {
+
+        newX = fx.evaluate({x:x})
+
+        let checkDiver = math.abs(math.subtract(newX, x))
+        let newCheckError = math.abs(math.divide(math.subtract(newX, x), newX))
+        if(iteration > 500){
+            data = []
+            data.push({key:iteration, iteration:'ลู่ออก', x:'ลู่ออก', error:'ลู่ออก'})
+            break;
+        }
+        checkError = newCheckError
+        console.log(checkError.toString())
+        x = newX
+        data.push({key:iteration, iteration:iteration, x:math.fix(x, 16).toString(), error:math.fix(checkError, 16).toString()})
+        iteration = iteration + 1
+    }
+    return data
+}
