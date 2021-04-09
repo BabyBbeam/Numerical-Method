@@ -21,7 +21,7 @@ const roet_menu = (
 const matrix_menu = (
     <Menu className='roet-menu'>
         <Menu.Item className='roet-menu-item'> 
-            Cramer's Rule
+            <Link to="/cramerrule" replace>Cramer's Rule</Link>
         </Menu.Item>
         <Menu.Item className='roet-menu-item'>
             Gauss Eliminate Method
