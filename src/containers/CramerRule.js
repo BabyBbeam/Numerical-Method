@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-import { Row, Col , Input, Button, Table, Modal } from 'antd'
-import axios from 'axios'
+import { Row, Col, Button, Table, Modal } from 'antd'
 import { calOnePoint } from '../components/calculateROE'
 import {MatrixInputA, MatrixInputB} from '../components/MatrixInput'
 import './Content.css'
-
-const Url = "https://raw.githubusercontent.com/BabyBbeam/Numerical-Method/main/db.json"
 
 class CramerRule extends Component {
 
@@ -51,19 +48,29 @@ class CramerRule extends Component {
     }
 
     onClickReset = e =>{
-        this.setState({fx:"",xl:null,xr:null,error:null,isCal:false})
+        let resetArrA = [[null,null],[null,null]]
+        let resetArrB = [null,null]
+        this.setState({
+            matrixA : resetArrA,
+            matrixB : resetArrB,
+            n : 2
+        })
     }
 
     OnChangeMatrixA = e =>{
+        let changedArr = this.state.matrixA
         let index = e.target.name.split('_')
-        this.state.matrixA[parseInt(index[1])][parseInt(index[2])] = e.target.value
+        changedArr[parseInt(index[1])][parseInt(index[2])] = e.target.value
         console.log(e.target.value)
+        this.setState({matrixA:changedArr})
     }
 
     OnChangeMatrixB = e =>{
+        let changedArr = this.state.matrixB
         let index = e.target.name.split('_')
-        this.state.matrixB[parseInt(index[1])]= e.target.value
+        changedArr[parseInt(index[1])]= e.target.value
         console.log(e.target.value)
+        this.setState({matrixB:changedArr})
     }
 
     onClickAdd = e =>{
@@ -79,14 +86,6 @@ class CramerRule extends Component {
             this.setState({n:this.state.n-1})
         } 
     }
-    // async componentDidMount(){
-    //     let DATA = null
-    //     await axios.get(Url)
-    //     .then(res => {DATA = res.data.root_of_eqution})
-    //     .catch(err => console.log(err))
-        
-    //     this.setState({fx:DATA[0].equation,xl:DATA[0].xl,xr:DATA[0].xr,error:DATA[0].error})
-    // }
 
     render() {
         return (
@@ -108,10 +107,10 @@ class CramerRule extends Component {
                 <Button onClick={this.onClickAdd}>Add</Button>{this.state.n} x {this.state.n}<Button onClick={this.onClickDel}>Del</Button>
                 <Row>
                     <Col span={22}>
-                        <MatrixInputA n={this.state.n} onChange={this.OnChangeMatrixA}/>
+                        <MatrixInputA n={this.state.n} onChange={this.OnChangeMatrixA} value={this.state.matrixA}/>
                     </Col>
                     <Col span={2}>
-                        <MatrixInputB n={this.state.n} onChange={this.OnChangeMatrixB}/>
+                        <MatrixInputB n={this.state.n} onChange={this.OnChangeMatrixB} value={this.state.matrixB}/>
                     </Col>
                 </Row>
                 <Row type='flex' align='middle' className='row-button'>

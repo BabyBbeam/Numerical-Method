@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import { Row, Col , Input, Button, Table, Modal } from 'antd'
-import axios from 'axios'
 import apis from '../api/index'
 import { calBisection } from '../components/calculateROE'
 import './Content.css'
-
-const Url = "https://raw.githubusercontent.com/BabyBbeam/Numerical-Method/main/db.json"
 
 class Bisection extends Component {
 
@@ -31,38 +28,7 @@ class Bisection extends Component {
         ],
         iterationData : [],
         isModalVisible : false,
-        apiData : [{
-            "id": 0,
-            "equation": "x^4-13",
-            "initial_x": "1",
-            "xl": "1.5",
-            "xr": "2.0",
-            "error": "0.00001"
-        },
-        {
-            "id": 1,
-            "equation": "43x-1",
-            "initial_x": "1",
-            "xl": "0.2",
-            "xr": "0.3",
-            "error": "0.00001"
-        },
-        {
-            "id": 2,
-            "equation": "x/2 + 1/4",
-            "initial_x": "0",
-            "xl": "1.5",
-            "xr": "2.0",
-            "error": "0.00001"
-        },
-        {
-            "id": 3,
-            "equation": "x^2 - 7",
-            "initial_x": "0",
-            "xl": "2.0",
-            "xr": "3.0",
-            "error": "0.00001"
-        }],
+        apiData : [],
         hasData : false,
     }
 
@@ -102,10 +68,6 @@ class Bisection extends Component {
             error : this.state.apiData[index]["error"],
             isModalVisible : false
         })
-        console.log(this.state.apiData[index]["equation"])
-        console.log(this.state.apiData[index]["xl"])
-        console.log(this.state.apiData[index]["xr"])
-        console.log(this.state.apiData[index]["error"])
     }
 
     onClickOk = e =>{
@@ -132,15 +94,6 @@ class Bisection extends Component {
         this.setState({error:e.target.value})
     }
 
-    //  async componentDidMount(){
-    //     let DATA = null
-    //     await axios.get(Url)
-    //     .then(res => {DATA = res.data.root_of_eqution})
-    //     .catch(err => console.log(err))
-        
-    //     this.setState({fx:DATA[0].equation,xl:DATA[0].xl,xr:DATA[0].xr,error:DATA[0].error})
-    // }
-
     render() {
         return (
             <div className='content'>
@@ -157,12 +110,14 @@ class Bisection extends Component {
                 >
                     {this.state.hasData ? 
                         this.state.apiData.map((x,i) => (
-                            <Row style={{marginBottom:'20px'}}>
+                            <Row className='modal-popup'>
                                 <Col span={12}>{x['equation']}</Col>
                                 <Col span={12}>
                                     <Button name={'insert_'+i} type='primary' onClick={this.onClickInsert}>Insert</Button>
                                 </Col>
-                            </Row>)) 
+                                <hr/>
+                            </Row>
+                            )) 
                     : null}
                 </Modal>
                 <h1>Bisection Method</h1>

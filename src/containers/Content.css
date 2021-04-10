@@ -34,10 +34,6 @@
     width: 70%;
 }
 
-/* .col-reset-button{
-    text-align: end;
-} */
-
 .reset-button{
     margin-right: 5px;
     background-color: darkgrey;
@@ -74,4 +70,11 @@
 .cal-button{
     margin-left: 5px;  
     margin-right: 5px;
+}
+
+.modal-popup{
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 2px 2px 0 0;
 }

@@ -31,7 +31,7 @@ export function calBisection(init_fx, init_xl, init_xr, init_error) {
         }
         checkError = math.abs(math.divide(math.subtract(newXm, xm), newXm))
         xm = newXm
-        data.push({key:iteration, iteration:iteration, x:xm.toString(), error:math.fix(checkError, 16).toString()})
+        data.push({key:iteration, iteration:iteration, x:math.fix(xm,16).toString(), error:math.fix(checkError, 16).toString()})
         iteration = iteration + 1
     }
     return data
@@ -92,8 +92,6 @@ export function calOnePoint(init_fx, init_x, init_error){
     while (math.larger(checkError, error)) {
 
         newX = fx.evaluate({x:x})
-
-        let checkDiver = math.abs(math.subtract(newX, x))
         let newCheckError = math.abs(math.divide(math.subtract(newX, x), newX))
         if(iteration > 500){
             data = []

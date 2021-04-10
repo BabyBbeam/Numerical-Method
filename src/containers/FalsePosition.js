@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col , Input, Button, Table, Modal } from 'antd'
-import axios from 'axios'
+import apis from '../api/index'
 import { calFalsePosition } from '../components/calculateROE'
 import './Content.css'
 
@@ -29,21 +29,47 @@ class FalsePosition extends Component {
             }
         ],
         iterationData : [],
-        isModalVisible : false
+        isModalVisible : false,
+        apiData : [],
+        hasData : false,
     }
 
     onClickCalculate = e =>{
-        //try{
+        try{
             this.setState({iterationData:calFalsePosition(this.state.fx, this.state.xl, this.state.xr, this.state.error)})
             this.setState({isCal:true})
-        //}
-        // catch (err){
-        //     console.log("error")
-        // }
+        }
+        catch (err){
+            console.log("error")
+        }
+    }
+
+    async getData(){
+        let tempData = null
+        await apis.getAllRoe().then(res => {tempData = res.data})
+        this.setState({apiData:tempData})
+        this.setState({hasData:true})
+        console.log(tempData)
     }
 
     onClickExample = e =>{
+        if(!this.state.hasData){
+            this.getData()
+        }
         this.setState({isModalVisible:true})
+    }
+
+    onClickInsert = e =>{
+        console.log(e.currentTarget.getAttribute('name'))
+        let index = e.currentTarget.getAttribute('name').split('_')
+        index = parseInt(index[1])
+        this.setState({
+            fx: this.state.apiData[index]["equation"],
+            xl : this.state.apiData[index]["xl"],
+            xr : this.state.apiData[index]["xr"],
+            error : this.state.apiData[index]["error"],
+            isModalVisible : false
+        })
     }
 
     onClickOk = e =>{
@@ -70,15 +96,6 @@ class FalsePosition extends Component {
         this.setState({error:e.target.value})
     }
 
-    // async componentDidMount(){
-    //     let DATA = null
-    //     await axios.get(Url)
-    //     .then(res => {DATA = res.data.root_of_eqution})
-    //     .catch(err => console.log(err))
-        
-    //     this.setState({fx:DATA[0].equation,xl:DATA[0].xl,xr:DATA[0].xr,error:DATA[0].error})
-    // }
-
     render() {
         return (
             <div className='content'>
@@ -93,7 +110,17 @@ class FalsePosition extends Component {
                         </Button>
                     ]}
             >
-
+                {this.state.hasData ? 
+                        this.state.apiData.map((x,i) => (
+                            <Row className='modal-popup'>
+                                <Col span={12}>{x['equation']}</Col>
+                                <Col span={12}>
+                                    <Button name={'insert_'+i} type='primary' onClick={this.onClickInsert}>Insert</Button>
+                                </Col>
+                                <hr/>
+                            </Row>
+                            )) 
+                    : null}
                 </Modal>
                 <h1>False-Position Method</h1>
                 <Row className='input-form' type='flex' align='middle'>
