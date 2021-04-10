@@ -1,5 +1,13 @@
 const axios = require('axios')
 
 const api = axios.create({
-    baseUrl = "https://json.extendsclass.com/bin/356b3a75af8e"
+    baseURL : "https://my-json-server.typicode.com/BabyBbeam/Numerical-Method/"
 })
+
+const getAllRoe = () => api.get('/root_of_eqution')
+
+const apis = {
+    getAllRoe
+}
+
+export default apis

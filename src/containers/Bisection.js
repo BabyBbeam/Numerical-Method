@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col , Input, Button, Table, Modal } from 'antd'
 import axios from 'axios'
+import apis from '../api/index'
 import { calBisection } from '../components/calculateROE'
 import './Content.css'
 
@@ -29,7 +30,40 @@ class Bisection extends Component {
             }
         ],
         iterationData : [],
-        isModalVisible : false
+        isModalVisible : false,
+        apiData : [{
+            "id": 0,
+            "equation": "x^4-13",
+            "initial_x": "1",
+            "xl": "1.5",
+            "xr": "2.0",
+            "error": "0.00001"
+        },
+        {
+            "id": 1,
+            "equation": "43x-1",
+            "initial_x": "1",
+            "xl": "0.2",
+            "xr": "0.3",
+            "error": "0.00001"
+        },
+        {
+            "id": 2,
+            "equation": "x/2 + 1/4",
+            "initial_x": "0",
+            "xl": "1.5",
+            "xr": "2.0",
+            "error": "0.00001"
+        },
+        {
+            "id": 3,
+            "equation": "x^2 - 7",
+            "initial_x": "0",
+            "xl": "2.0",
+            "xr": "3.0",
+            "error": "0.00001"
+        }],
+        hasData : false,
     }
 
     onClickCalculate = e =>{
@@ -42,8 +76,36 @@ class Bisection extends Component {
         }
     }
 
+    async getData(){
+        let tempData = null
+        await apis.getAllRoe().then(res => {tempData = res.data})
+        this.setState({apiData:tempData})
+        this.setState({hasData:true})
+        console.log(tempData)
+    }
+
     onClickExample = e =>{
+        if(!this.state.hasData){
+            this.getData()
+        }
         this.setState({isModalVisible:true})
+    }
+
+    onClickInsert = e =>{
+        console.log(e.currentTarget.getAttribute('name'))
+        let index = e.currentTarget.getAttribute('name').split('_')
+        index = parseInt(index[1])
+        this.setState({
+            fx: this.state.apiData[index]["equation"],
+            xl : this.state.apiData[index]["xl"],
+            xr : this.state.apiData[index]["xr"],
+            error : this.state.apiData[index]["error"],
+            isModalVisible : false
+        })
+        console.log(this.state.apiData[index]["equation"])
+        console.log(this.state.apiData[index]["xl"])
+        console.log(this.state.apiData[index]["xr"])
+        console.log(this.state.apiData[index]["error"])
     }
 
     onClickOk = e =>{
@@ -70,7 +132,7 @@ class Bisection extends Component {
         this.setState({error:e.target.value})
     }
 
-    // async componentDidMount(){
+    //  async componentDidMount(){
     //     let DATA = null
     //     await axios.get(Url)
     //     .then(res => {DATA = res.data.root_of_eqution})
@@ -92,8 +154,16 @@ class Bisection extends Component {
                             Ok
                         </Button>
                     ]}
-            >
-
+                >
+                    {this.state.hasData ? 
+                        this.state.apiData.map((x,i) => (
+                            <Row style={{marginBottom:'20px'}}>
+                                <Col span={12}>{x['equation']}</Col>
+                                <Col span={12}>
+                                    <Button name={'insert_'+i} type='primary' onClick={this.onClickInsert}>Insert</Button>
+                                </Col>
+                            </Row>)) 
+                    : null}
                 </Modal>
                 <h1>Bisection Method</h1>
                 <Row className='input-form' type='flex' align='middle'>

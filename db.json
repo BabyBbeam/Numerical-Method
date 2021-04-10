@@ -1,7 +1,7 @@
 {
     "root_of_eqution":[
         {
-            "id": 1,
+            "id": 0,
             "equation": "x^4-13",
             "initial_x": "1",
             "xl": "1.5",
@@ -9,15 +9,15 @@
             "error": "0.00001"
         },
         {
-            "id": 2,
+            "id": 1,
             "equation": "43x-1",
             "initial_x": "1",
-            "xl": "0.2",
+            "xl": "0.0",
             "xr": "0.3",
             "error": "0.00001"
         },
         {
-            "id": 3,
+            "id": 2,
             "equation": "x/2 + 1/4",
             "initial_x": "0",
             "xl": "1.5",
@@ -25,7 +25,7 @@
             "error": "0.00001"
         },
         {
-            "id": 4,
+            "id": 3,
             "equation": "x^2 - 7",
             "initial_x": "0",
             "xl": "2.0",
