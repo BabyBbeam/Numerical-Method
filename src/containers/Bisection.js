@@ -118,7 +118,7 @@ class Bisection extends Component {
                                 <hr/>
                             </Row>
                             )) 
-                    : null}
+                    : <span style={{fontSize:"20px", textAlign:"center"}}>Loading Data ...</span>}
                 </Modal>
                 <h1>Bisection Method</h1>
                 <Row className='input-form' type='flex' align='middle'>
