@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Row, Col , Input, Button, Table, Modal } from 'antd'
+import { Row, Col , Input, Button, Table } from 'antd'
 import apis from '../api/index'
 import { calFalsePosition } from '../components/calculateROE'
+import ModalPopup from '../components/ModalPopup'
 import './Content.css'
-
-const Url = "https://raw.githubusercontent.com/BabyBbeam/Numerical-Method/main/db.json"
 
 class FalsePosition extends Component {
 
@@ -99,29 +98,13 @@ class FalsePosition extends Component {
     render() {
         return (
             <div className='content'>
-                <Modal
-                    title='ตัวอย่าง'
-                    visible={this.state.isModalVisible} 
-                    onOk={this.onClickOk}
-                    onCancel={this.onClickOk}
-                    footer={[
-                        <Button type='primary' onClick={this.onClickOk}>
-                            Ok
-                        </Button>
-                    ]}
-            >
-                {this.state.hasData ? 
-                        this.state.apiData.map((x,i) => (
-                            <Row className='modal-popup'>
-                                <Col span={12}>{x['equation']}</Col>
-                                <Col span={12}>
-                                    <Button name={'insert_'+i} type='primary' onClick={this.onClickInsert}>Insert</Button>
-                                </Col>
-                                <hr/>
-                            </Row>
-                            )) 
-                    : null}
-                </Modal>
+                <ModalPopup 
+                    visible = {this.state.isModalVisible}
+                    onOk = {this.onClickOk}
+                    hasData = {this.state.hasData}
+                    apiData = {this.state.apiData}
+                    onClick = {this.onClickInsert}
+                />
                 <h1>False-Position Method</h1>
                 <Row className='input-form' type='flex' align='middle'>
                     <Col span={24}>

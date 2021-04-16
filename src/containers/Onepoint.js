@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Row, Col , Input, Button, Table, Modal } from 'antd'
-import axios from 'axios'
+import { Row, Col , Input, Button, Table } from 'antd'
+import apis from '../api/index'
 import { calOnePoint } from '../components/calculateROE'
+import ModalPopup from '../components/ModalPopup'
 import './Content.css'
-
-const Url = "https://raw.githubusercontent.com/BabyBbeam/Numerical-Method/main/db.json"
 
 class OnePoint extends Component {
 
@@ -28,7 +27,9 @@ class OnePoint extends Component {
             }
         ],
         iterationData : [],
-        isModalVisible : false
+        isModalVisible : false,
+        apiData : [],
+        hasData : false
     }
 
     onClickCalculate = e =>{
@@ -41,8 +42,31 @@ class OnePoint extends Component {
         }
     }
 
+    async getData(){
+        let tempData = null
+        await apis.getAllRoe().then(res => {tempData = res.data})
+        this.setState({apiData:tempData})
+        this.setState({hasData:true})
+        console.log(tempData)
+    }
+
     onClickExample = e =>{
+        if(!this.state.hasData){
+            this.getData()
+        }
         this.setState({isModalVisible:true})
+    }
+
+    onClickInsert = e =>{
+        console.log(e.currentTarget.getAttribute('name'))
+        let index = e.currentTarget.getAttribute('name').split('_')
+        index = parseInt(index[1])
+        this.setState({
+            fx: this.state.apiData[index]["equation"],
+            x : this.state.apiData[index]["initial_x"],
+            error : this.state.apiData[index]["error"],
+            isModalVisible : false
+        })
     }
 
     onClickOk = e =>{
@@ -65,31 +89,16 @@ class OnePoint extends Component {
         this.setState({error:e.target.value})
     }
 
-    // async componentDidMount(){
-    //     let DATA = null
-    //     await axios.get(Url)
-    //     .then(res => {DATA = res.data.root_of_eqution})
-    //     .catch(err => console.log(err))
-        
-    //     this.setState({fx:DATA[0].equation,xl:DATA[0].xl,xr:DATA[0].xr,error:DATA[0].error})
-    // }
-
     render() {
         return (
             <div className='content'>
-                <Modal
-                    title='ตัวอย่าง'
-                    visible={this.state.isModalVisible} 
-                    onOk={this.onClickOk}
-                    onCancel={this.onClickOk}
-                    footer={[
-                        <Button type='primary' onClick={this.onClickOk}>
-                            Ok
-                        </Button>
-                    ]}
-            >
-
-                </Modal>
+                <ModalPopup 
+                    visible = {this.state.isModalVisible}
+                    onOk = {this.onClickOk}
+                    hasData = {this.state.hasData}
+                    apiData = {this.state.apiData}
+                    onClick = {this.onClickInsert}
+                />
                 <h1>One-Point Iteration Method</h1>
                 <Row className='input-form' type='flex' align='middle'>
                     <Col span={24}>
@@ -98,7 +107,7 @@ class OnePoint extends Component {
                 </Row>
                 <Row className='input-form' type='flex' align='middle'>
                     <Col span={8} className='col-input-xl'>
-                        Intitial x :<Input className='input-form-init' placeholder='0' value={this.state.xl} onChange={this.OnChangeX} />
+                        Intitial x :<Input className='input-form-init' placeholder='0' value={this.state.x} onChange={this.OnChangeX} />
                     </Col>
                     <Col span={8} className='col-input-err'>
                         error :<Input className='input-form-err' placeholder='0.00001' value={this.state.error} onChange={this.onChangeErr} />

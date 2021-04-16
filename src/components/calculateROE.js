@@ -93,7 +93,7 @@ export function calOnePoint(init_fx, init_x, init_error){
 
         newX = fx.evaluate({x:x})
         let newCheckError = math.abs(math.divide(math.subtract(newX, x), newX))
-        if(iteration > 500){
+        if(iteration > 500 || (iteration > 5 && math.equal(checkError, 1))){
             data = []
             data.push({key:iteration, iteration:'ลู่ออก', x:'ลู่ออก', error:'ลู่ออก'})
             break;
