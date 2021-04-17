@@ -6,6 +6,7 @@ import Bisection from './containers/Bisection';
 import FalsePosition from './containers/FalsePosition';
 import OnePoint from './containers/Onepoint'
 import CramerRule from './containers/CramerRule';
+import NewtonRaphson from './containers/NewtonRaphson'
 
 class App extends React.Component {
 
@@ -21,6 +22,7 @@ class App extends React.Component {
               <Route exact path="/falseposition" component={FalsePosition} />
               <Route exact path="/onepoint" component={OnePoint} />
               <Route exact path="/cramerrule" component={CramerRule} />
+              <Route exact path="/newtonraphson" component={NewtonRaphson} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>
           </div>
