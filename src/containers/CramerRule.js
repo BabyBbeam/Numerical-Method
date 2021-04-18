@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Button, Table, Modal } from 'antd'
-import { calOnePoint } from '../components/calculateROE'
+import { calOnePoint } from '../components/calculateNumer'
 import {MatrixInputA, MatrixInputB} from '../components/MatrixInput'
 import './Content.css'
 
@@ -104,14 +104,14 @@ class CramerRule extends Component {
 
                 </Modal>
                 <h1>Cramer's Rule</h1>
-                <Button onClick={this.onClickAdd}>Add</Button>{this.state.n} x {this.state.n}<Button onClick={this.onClickDel}>Del</Button>
+                <Row className='add-del-row'>
+                    <Button onClick={this.onClickAdd}>Add</Button>
+                    <span className='n-text'>{this.state.n} x {this.state.n}</span>
+                    <Button onClick={this.onClickDel}>Del</Button>
+                </Row>
                 <Row>
-                    <Col span={22}>
-                        <MatrixInputA n={this.state.n} onChange={this.OnChangeMatrixA} value={this.state.matrixA}/>
-                    </Col>
-                    <Col span={2}>
-                        <MatrixInputB n={this.state.n} onChange={this.OnChangeMatrixB} value={this.state.matrixB}/>
-                    </Col>
+                    <MatrixInputA n={this.state.n} onChange={this.OnChangeMatrixA} value={this.state.matrixA}/>
+                    <MatrixInputB n={this.state.n} onChange={this.OnChangeMatrixB} value={this.state.matrixB}/> 
                 </Row>
                 <Row type='flex' align='middle' className='row-button'>
                     <Col span={24} className='col-button'>

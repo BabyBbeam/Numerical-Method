@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col , Input, Button, Table } from 'antd'
 import apis from '../api/index'
-import { calBisection } from '../components/calculateROE'
+import { calBisection } from '../components/calculateNumer'
 import ModalPopup from '../components/ModalPopup'
 import './Content.css'
 

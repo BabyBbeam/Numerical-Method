@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col , Input, Button, Table } from 'antd'
 import apis from '../api/index'
-import { calOnePoint } from '../components/calculateROE'
+import { calOnePoint } from '../components/calculateNumer'
 import ModalPopup from '../components/ModalPopup'
 import './Content.css'
 
