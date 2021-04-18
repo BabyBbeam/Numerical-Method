@@ -136,5 +136,24 @@ export function calNewtonRaphson(initFx, initX, initError){
 }
 
 export function calSecant(initFx, initX0, initX1, initError){
-    
+    let fx = math.parse(initFx).compile()
+    let x0 = math.bignumber(initX0)
+    let x1 = math.bignumber(initX1)
+    let error = math.bignumber(initError)
+    let checkError = math.bignumber(Number.MAX_VALUE)
+    let newX
+    let data = []
+    let iteration = 1
+
+    while(math.larger(checkError, error)){ 
+        let  up = math.multiply(fx.evaluate({x:x1}), math.subtract(x1, x0))
+        let down = math.subtract(fx.evaluate({x:x1}), fx.evaluate({x:x0}))
+        newX = math.subtract(x1, math.divide(up, down))
+        checkError = math.abs(math.divide(math.subtract(newX, x1), newX))
+        x0 = x1
+        x1 = newX
+        data.push({key:iteration, iteration:iteration, x:newX.toString(), error:checkError.toString()})
+        iteration = iteration + 1
+    }
+    return data
 }

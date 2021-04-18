@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col , Input, Button, Table } from 'antd'
 import apis from '../api/index'
-import { calBisection } from '../components/calculateROE'
+import { calSecant } from '../components/calculateROE'
 import ModalPopup from '../components/ModalPopup'
 import './Content.css'
 
@@ -9,8 +9,8 @@ class Secant extends Component {
 
     state = {
         fx : "",
-        xl : null,
-        xr : null,
+        x0 : null,
+        x1 : null,
         error : null,
         isCal : false,
         iterationColumns : [
@@ -35,7 +35,7 @@ class Secant extends Component {
 
     onClickCalculate = e =>{
         try{
-            this.setState({iterationData:calBisection(this.state.fx, this.state.xl, this.state.xr, this.state.error)})
+            this.setState({iterationData:calSecant(this.state.fx, this.state.x0, this.state.x1, this.state.error)})
             this.setState({isCal:true})
         }
         catch (err){
@@ -62,8 +62,8 @@ class Secant extends Component {
         index = parseInt(index[1])
         this.setState({
             fx: this.state.apiData[index]["equation"],
-            xl : this.state.apiData[index]["xl"],
-            xr : this.state.apiData[index]["xr"],
+            x0 : this.state.apiData[index]["xl"],
+            x1 : this.state.apiData[index]["xr"],
             error : this.state.apiData[index]["error"],
             isModalVisible : false
         })
@@ -81,12 +81,12 @@ class Secant extends Component {
         this.setState({fx:e.target.value})
     }
 
-    OnChangeXl = e =>{
-        this.setState({xl:e.target.value})
+    OnChangeX0 = e =>{
+        this.setState({x0:e.target.value})
     }
 
-    OnChangeXr = e =>{
-        this.setState({xr:e.target.value})
+    OnChangeX1 = e =>{
+        this.setState({x1:e.target.value})
     }
 
     onChangeErr = e =>{
@@ -111,10 +111,10 @@ class Secant extends Component {
                 </Row>
                 <Row className='input-form' type='flex' align='middle'>
                     <Col span={8} className='col-input-xl'>
-                        x0 :<Input className='input-form-init' placeholder='1.5' value={this.state.xl} onChange={this.OnChangeXl} />
+                        x0 :<Input className='input-form-init' placeholder='1.5' value={this.state.x0} onChange={this.OnChangeX0} />
                     </Col>
                     <Col span={8}>
-                        x1 :<Input className='input-form-init' placeholder='2.0' value={this.state.xr} onChange={this.OnChangeXr} />
+                        x1 :<Input className='input-form-init' placeholder='2.0' value={this.state.x1} onChange={this.OnChangeX1} />
                     </Col>
                     <Col span={8} className='col-input-err'>
                         error :<Input className='input-form-err' placeholder='0.00001' value={this.state.error} onChange={this.onChangeErr} />
