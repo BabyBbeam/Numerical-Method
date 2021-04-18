@@ -19,7 +19,11 @@ class ModalPopup extends React.Component {
                     {this.props.hasData ? 
                         this.props.apiData.map((x,i) => (
                             <Row className='modal-popup'>
-                                <Col span={12}>{x['equation']}</Col>
+                                {this.props.showQuestion ? 
+                                    <Col span={12}>{x['equation']}</Col>
+                                    :
+                                    <Col span={12}>ข้อที่ {i+1}</Col>
+                                }
                                 <Col span={12}>
                                     <Button name={'insert_'+i} type='primary' onClick={this.props.onClick}>Insert</Button>
                                 </Col>

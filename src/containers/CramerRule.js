@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Row, Col, Button, Table, Modal } from 'antd'
-import { calOnePoint } from '../components/calculateNumer'
+import { Row, Col, Button, Table } from 'antd'
+import { calCramerRule, cloneArray } from '../components/calculateNumer'
 import {MatrixInputA, MatrixInputB} from '../components/MatrixInput'
+import ModalPopup from '../components/ModalPopup'
+import apis from '../api/index'
 import './Content.css'
 
 class CramerRule extends Component {
@@ -13,25 +15,23 @@ class CramerRule extends Component {
         isCal : false,
         iterationColumns : [
             {
-                title: 'Iteration',
-                dataIndex: 'iteration'
-            },
-            {
                 title: 'X',
                 dataIndex: 'x'
             },
             {
-                title: 'Error',
-                dataIndex: 'error'
+                title: 'Value',
+                dataIndex: 'value'
             }
         ],
         iterationData : [],
-        isModalVisible : false
+        isModalVisible : false,
+        apiData : [],
+        hasData : false,
     }
 
     onClickCalculate = e =>{
         try{
-            this.setState({iterationData:calOnePoint(this.state.fx, this.state.x, this.state.error)})
+            this.setState({iterationData:calCramerRule(this.state.n, this.state.matrixA, this.state.matrixB)})
             this.setState({isCal:true})
         }
         catch (err){
@@ -39,8 +39,29 @@ class CramerRule extends Component {
         }
     }
 
+    async getData(){
+        let tempData = null
+        await apis.getAllMatrix().then(res => {tempData = res.data})
+        this.setState({apiData:tempData})
+        this.setState({hasData:true})
+    }
+
     onClickExample = e =>{
+        if(!this.state.hasData){
+            this.getData()
+        }
         this.setState({isModalVisible:true})
+    }
+
+    onClickInsert = e =>{
+        let index = e.currentTarget.getAttribute('name').split('_')
+        index = parseInt(index[1])
+        this.setState({
+            n: this.state.apiData[index]["n"],
+            matrixA : cloneArray(this.state.apiData[index]["matrixA"]),
+            matrixB : [...this.state.apiData[index]["matrixB"]],
+            isModalVisible : false
+        })
     }
 
     onClickOk = e =>{
@@ -76,6 +97,8 @@ class CramerRule extends Component {
     onClickAdd = e =>{
         if(this.state.n < 6){
             this.state.matrixA.push([])
+            this.state.matrixA.map(x => x.push(null))
+            this.state.matrixB.push(null)
             this.setState({n:this.state.n+1})
         } 
     }
@@ -83,6 +106,8 @@ class CramerRule extends Component {
     onClickDel = e =>{
         if(this.state.n > 2){
             this.state.matrixA.pop()
+            this.state.matrixA.map(x => x.pop())
+            this.state.matrixB.pop()
             this.setState({n:this.state.n-1})
         } 
     }
@@ -90,19 +115,14 @@ class CramerRule extends Component {
     render() {
         return (
             <div className='content'>
-                <Modal
-                    title='ตัวอย่าง'
-                    visible={this.state.isModalVisible} 
-                    onOk={this.onClickOk}
-                    onCancel={this.onClickOk}
-                    footer={[
-                        <Button type='primary' onClick={this.onClickOk}>
-                            Ok
-                        </Button>
-                    ]}
-            >
-
-                </Modal>
+                <ModalPopup 
+                    visible = {this.state.isModalVisible}
+                    onOk = {this.onClickOk}
+                    showQuestion = {false}
+                    hasData = {this.state.hasData}
+                    apiData = {this.state.apiData}
+                    onClick = {this.onClickInsert}
+                />
                 <h1>Cramer's Rule</h1>
                 <Row className='add-del-row'>
                     <Button onClick={this.onClickAdd}>Add</Button>

@@ -157,3 +157,37 @@ export function calSecant(initFx, initX0, initX1, initError){
     }
     return data
 }
+
+export function cloneArray(initArry){
+    let Arr = initArry.map( x => [...x])
+    return Arr
+}
+
+export function calCramerRule(n, initMatrixA, initMatrixB){
+    let MatrixA = cloneArray(initMatrixA)
+    let MatrixB = [...initMatrixB]
+    // MatrixA = MatrixA.map(x => x.map(y => math.bignumber(y)))
+    // for(let i=0;i<n;i++){
+    //     for(let j=0;j<n;j++){
+    //         MatrixA[i][j] = math.bignumber(MatrixA[i][j])
+    //     }
+    // }
+    // MatrixB = MatrixB.map(x => math.bignumber(x))
+    // console.log(MatrixA)
+    let detA = math.det(MatrixA)
+    let x
+    let data = []
+    for(let i=0;i<n;i++){
+        for(let j=0;j<n;j++){
+            MatrixA[j][i] = MatrixB[j]
+        }
+
+        x = math.divide(math.det(MatrixA), detA)
+        data.push({key:i+1, x:"x"+(i+1), value:x.toPrecision(10)})
+
+        for(let j=0;j<n;j++){
+            MatrixA[j][i] = math.bignumber(initMatrixA[j][i])
+        }
+    }
+    return data
+}
