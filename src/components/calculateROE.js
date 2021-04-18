@@ -1,4 +1,11 @@
-const math = require('mathjs');
+const {create, all} = require('mathjs');
+
+const config = {
+    number: 'BigNumber',
+    precision: 13
+}
+
+const math = create(all, config)
 
 export function calBisection(init_fx, init_xl, init_xr, init_error) {
 
@@ -31,7 +38,7 @@ export function calBisection(init_fx, init_xl, init_xr, init_error) {
         }
         checkError = math.abs(math.divide(math.subtract(newXm, xm), newXm))
         xm = newXm
-        data.push({key:iteration, iteration:iteration, x:math.fix(xm,16).toString(), error:math.fix(checkError, 16).toString()})
+        data.push({key:iteration, iteration:iteration, x:xm.toString(), error:checkError.toString()})
         iteration = iteration + 1
     }
     return data
@@ -74,7 +81,7 @@ export function calFalsePosition(init_fx, init_xl, init_xr, init_error){
 
         checkError = math.abs(math.divide(math.subtract(newX, x), newX))
         x = newX
-        data.push({key:iteration, iteration:iteration, x:math.fix(x, 16).toString(), error:math.fix(checkError, 16).toString()})
+        data.push({key:iteration, iteration:iteration, x:x.toString(), error:checkError.toString()})
         iteration = iteration + 1
     }
     return data
@@ -101,8 +108,29 @@ export function calOnePoint(init_fx, init_x, init_error){
         checkError = newCheckError
         console.log(checkError.toString())
         x = newX
-        data.push({key:iteration, iteration:iteration, x:math.fix(x, 16).toString(), error:math.fix(checkError, 16).toString()})
+        data.push({key:iteration, iteration:iteration, x:x.toString(), error:checkError.toString()})
         iteration = iteration + 1
     }
+    return data
+}
+
+export function calNewtonRaphson(initFx, initX, initError){
+    let fx = math.parse(initFx).compile()
+    let dfx = math.derivative(initFx,'x').compile()
+    let x = math.bignumber(initX)
+    let error = math.bignumber(initError)
+    let checkError = math.bignumber(Number.MAX_VALUE)
+    let newX = x
+    let data = []
+    let iteration = 1
+
+    while(math.larger(checkError, error)){
+
+        newX = math.subtract(x, math.divide(fx.evaluate({x:x}), dfx.evaluate({x:x})))
+        checkError = math.abs(math.divide(math.subtract(newX, x), newX))
+        x = newX
+        data.push({key:iteration, iteration:iteration, x:x.toString(), error:checkError.toString()})
+        iteration = iteration + 1
+    } 
     return data
 }

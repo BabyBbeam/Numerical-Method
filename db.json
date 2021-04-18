@@ -27,7 +27,7 @@
         {
             "id": 3,
             "equation": "x^2 - 7",
-            "initial_x": "0",
+            "initial_x": "1",
             "xl": "2.0",
             "xr": "3.0",
             "error": "0.00001"

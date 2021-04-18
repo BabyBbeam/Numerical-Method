@@ -48,7 +48,6 @@ class FalsePosition extends Component {
         await apis.getAllRoe().then(res => {tempData = res.data})
         this.setState({apiData:tempData})
         this.setState({hasData:true})
-        console.log(tempData)
     }
 
     onClickExample = e =>{
@@ -59,7 +58,6 @@ class FalsePosition extends Component {
     }
 
     onClickInsert = e =>{
-        console.log(e.currentTarget.getAttribute('name'))
         let index = e.currentTarget.getAttribute('name').split('_')
         index = parseInt(index[1])
         this.setState({

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col , Input, Button, Table } from 'antd'
 import apis from '../api/index'
-import { calOnePoint } from '../components/calculateROE'
+import { calNewtonRaphson } from '../components/calculateROE'
 import ModalPopup from '../components/ModalPopup'
 import './Content.css'
 
@@ -34,7 +34,7 @@ class NewtonRaphson extends Component {
 
     onClickCalculate = e =>{
         try{
-            this.setState({iterationData:calOnePoint(this.state.fx, this.state.x, this.state.error)})
+            this.setState({iterationData:calNewtonRaphson(this.state.fx, this.state.x, this.state.error)})
             this.setState({isCal:true})
         }
         catch (err){
@@ -47,7 +47,6 @@ class NewtonRaphson extends Component {
         await apis.getAllRoe().then(res => {tempData = res.data})
         this.setState({apiData:tempData})
         this.setState({hasData:true})
-        console.log(tempData)
     }
 
     onClickExample = e =>{
@@ -58,7 +57,6 @@ class NewtonRaphson extends Component {
     }
 
     onClickInsert = e =>{
-        console.log(e.currentTarget.getAttribute('name'))
         let index = e.currentTarget.getAttribute('name').split('_')
         index = parseInt(index[1])
         this.setState({
