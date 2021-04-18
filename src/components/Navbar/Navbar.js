@@ -18,6 +18,9 @@ const roet_menu = (
     <Menu.Item className="roet-menu-item">
       <Link to="/newtonraphson" replace>Newton Raphson Method</Link>
     </Menu.Item>
+    <Menu.Item className="roet-menu-item">
+      <Link to="/secant" replace>Secant Method</Link>
+    </Menu.Item>
   </Menu>
 );
 

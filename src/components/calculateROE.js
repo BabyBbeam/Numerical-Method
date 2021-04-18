@@ -134,3 +134,7 @@ export function calNewtonRaphson(initFx, initX, initError){
     } 
     return data
 }
+
+export function calSecant(initFx, initX0, initX1, initError){
+    
+}
