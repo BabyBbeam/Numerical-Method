@@ -10,6 +10,7 @@ import NewtonRaphson from './containers/NewtonRaphson'
 import Secant from './containers/Secant'
 import GaussElimination from './containers/GaussElimination'
 import GaussJordan from './containers/GaussJordan';
+import LUDecomposition from './containers/LUComposition';
 
 class App extends React.Component {
 
@@ -29,6 +30,7 @@ class App extends React.Component {
               <Route exact path="/secant" component={Secant} />
               <Route exact path="/gauss-elimination" component={GaussElimination} />
               <Route exact path="/gauss-jordan" component={GaussJordan} />
+              <Route exact path="/lu-decomposition" component={LUDecomposition} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>
           </div>

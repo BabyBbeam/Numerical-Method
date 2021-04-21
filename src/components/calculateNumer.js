@@ -274,3 +274,72 @@ export function calGaussJordan(n, initMatrixA, initMatrixB){
 
     return data
 }
+
+export function calLUDecomposition(n, initMatrixA, initMatrixB){
+    
+    let MatrixA = cloneArray(initMatrixA)
+    let MatrixB = [...initMatrixB]
+    let MatrixL = []
+    let MatrixU = []
+    let x = []
+    let y = []
+    let data = []
+    
+    for(let i=0;i<n;i++){
+        MatrixL.push([])
+        MatrixU.push([])
+        x.push(1)
+        y.push(1)
+        for(let j=0;j<n;j++){
+            MatrixL[i][j] = 0
+            if(i===j){
+                MatrixU[i][j] = 1
+            }
+            else{
+                MatrixU[i][j] = 0
+            }
+        }
+    }
+
+    for(let i=0;i<n;i++){
+        for(let j=0;j<n;j++){
+            let sum = 0
+            for(let k=0;k<n;k++){
+                if(k!==j || i<j){
+                    sum = sum + (MatrixL[i][k]*MatrixU[k][j])
+                }
+            }
+            if(i>=j){
+                sum = MatrixA[i][j] - sum
+                MatrixL[i][j] = sum
+            }
+            else{
+                sum = MatrixA[i][j] - sum
+                MatrixU[i][j] = sum/MatrixL[i][i]
+            }
+        }
+    }
+
+    for(let i=0;i<n;i++){
+        let sum = 0
+        for(let j=0;j<n;j++){
+            if(i!==j){
+                sum = sum + (MatrixL[i][j]*y[j])
+            }
+        }
+        y[i] = ((MatrixB[i] - sum) / MatrixL[i][i])
+    }
+
+    for(let i=n-1;i>=0;i--){
+        let sum = 0
+        for(let j=0;j<n;j++){
+            if(i!==j){
+                sum = sum + (MatrixU[i][j]*x[j])
+            }
+        }
+        x[i] = ((y[i] - sum) / MatrixU[i][i])
+        data[i] = {key:i+1, x:"x"+(i+1), value:x[i].toPrecision(10)}
+    }
+
+    return data
+}

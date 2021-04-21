@@ -35,6 +35,9 @@ const matrix_menu = (
       <Menu.Item className='roet-menu-item'>
           <Link to="/gauss-jordan" replace>Gauss Jordan Method</Link>
       </Menu.Item>
+      <Menu.Item className='roet-menu-item'>
+          <Link to="/lu-decomposition" replace>LU Decomposition Method</Link>
+      </Menu.Item>
     </Menu>
 );
 
