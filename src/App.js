@@ -8,6 +8,7 @@ import OnePoint from './containers/Onepoint'
 import CramerRule from './containers/CramerRule';
 import NewtonRaphson from './containers/NewtonRaphson'
 import Secant from './containers/Secant'
+import GaussElimination from './containers/GaussElimination'
 
 class App extends React.Component {
 
@@ -20,11 +21,12 @@ class App extends React.Component {
             <Redirect exact from="/" to="/bisection" />
             <Switch>
               <Route exact path="/bisection" component={Bisection} />
-              <Route exact path="/falseposition" component={FalsePosition} />
-              <Route exact path="/onepoint" component={OnePoint} />
-              <Route exact path="/cramerrule" component={CramerRule} />
-              <Route exact path="/newtonraphson" component={NewtonRaphson} />
+              <Route exact path="/false-position" component={FalsePosition} />
+              <Route exact path="/one-point" component={OnePoint} />
+              <Route exact path="/cramer-rule" component={CramerRule} />
+              <Route exact path="/newton-raphson" component={NewtonRaphson} />
               <Route exact path="/secant" component={Secant} />
+              <Route exact path="/gauss-elimination" component={GaussElimination} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>
           </div>

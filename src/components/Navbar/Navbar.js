@@ -10,13 +10,13 @@ const roet_menu = (
       <Link to="/bisection" replace>Bisection Method</Link>
     </Menu.Item>
     <Menu.Item className="roet-menu-item">
-      <Link to="/falseposition" replace>False-position Method</Link>
+      <Link to="/false-position" replace>False-position Method</Link>
     </Menu.Item>
     <Menu.Item className="roet-menu-item">
-      <Link to="/onepoint" replace>One-point Iteration Method</Link>
+      <Link to="/one-point" replace>One-point Iteration Method</Link>
     </Menu.Item>
     <Menu.Item className="roet-menu-item">
-      <Link to="/newtonraphson" replace>Newton Raphson Method</Link>
+      <Link to="/newton-raphson" replace>Newton Raphson Method</Link>
     </Menu.Item>
     <Menu.Item className="roet-menu-item">
       <Link to="/secant" replace>Secant Method</Link>
@@ -27,10 +27,10 @@ const roet_menu = (
 const matrix_menu = (
     <Menu className='roet-menu'>
         <Menu.Item className='roet-menu-item'> 
-            <Link to="/cramerrule" replace>Cramer's Rule</Link>
+            <Link to="/cramer-rule" replace>Cramer's Rule</Link>
         </Menu.Item>
         <Menu.Item className='roet-menu-item'>
-            Gauss Eliminate Method
+        <Link to="/gauss-elimination" replace>Gauss Elimination Method</Link>
         </Menu.Item>
     </Menu>
 );
