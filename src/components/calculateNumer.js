@@ -115,6 +115,7 @@ export function calOnePoint(init_fx, init_x, init_error){
 }
 
 export function calNewtonRaphson(initFx, initX, initError){
+
     let fx = math.parse(initFx).compile()
     let dfx = math.derivative(initFx,'x').compile()
     let x = math.bignumber(initX)
@@ -164,16 +165,9 @@ export function cloneArray(initArry){
 }
 
 export function calCramerRule(n, initMatrixA, initMatrixB){
+
     let MatrixA = cloneArray(initMatrixA)
     let MatrixB = [...initMatrixB]
-    // MatrixA = MatrixA.map(x => x.map(y => math.bignumber(y)))
-    // for(let i=0;i<n;i++){
-    //     for(let j=0;j<n;j++){
-    //         MatrixA[i][j] = math.bignumber(MatrixA[i][j])
-    //     }
-    // }
-    // MatrixB = MatrixB.map(x => math.bignumber(x))
-    // console.log(MatrixA)
     let detA = math.det(MatrixA)
     let x
     let data = []
@@ -189,5 +183,48 @@ export function calCramerRule(n, initMatrixA, initMatrixB){
             MatrixA[j][i] = math.bignumber(initMatrixA[j][i])
         }
     }
+    return data
+}
+
+export function calGaussElimination(n, initMatrixA, initMatrixB){
+    
+    let MatrixA = cloneArray(initMatrixA)
+    let MatrixB = [...initMatrixB]
+    let data = []
+    let x = []
+    for(let i=1;i<n;i++){
+
+        for(let j=i;j<n;j++){
+
+            let divide = MatrixA[i-1][i-1]
+            let multi = MatrixA[j][i-1]
+
+            for(let k =i-1;k<n;k++){
+                MatrixA[j][k] = MatrixA[j][k] - ((MatrixA[i-1][k]/divide)*multi)
+            }
+
+            MatrixB[j] = MatrixB[j] - ((MatrixB[i-1]/divide)*multi)
+
+        }
+    }
+
+    for(let i=0;i<n;i++){
+        x.push(1)
+    }
+
+    for(let i=n-1;i>=0;i--){
+
+        let sum = 0
+        for(let j=0;j<n;j++){
+
+            if(i!==j){
+                sum = sum + (MatrixA[i][j]*x[j])
+            } 
+
+        }
+        x[i] = (MatrixB[i]-sum)/MatrixA[i][i]
+        data[i] = {key:i+1, x:"x"+(i+1), value:x[i].toPrecision(10)}
+    }
+
     return data
 }

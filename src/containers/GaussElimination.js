@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Button, Table } from 'antd'
-import { calCramerRule, cloneArray } from '../components/calculateNumer'
+import { calGaussElimination, cloneArray } from '../components/calculateNumer'
 import {MatrixInputA, MatrixInputB} from '../components/MatrixInput'
 import ModalPopup from '../components/ModalPopup'
 import apis from '../api/index'
@@ -31,7 +31,7 @@ class GaussElimation extends Component {
 
     onClickCalculate = e =>{
         try{
-            this.setState({iterationData:calCramerRule(this.state.n, this.state.matrixA, this.state.matrixB)})
+            this.setState({iterationData:calGaussElimination(this.state.n, this.state.matrixA, this.state.matrixB)})
             this.setState({isCal:true})
         }
         catch (err){
