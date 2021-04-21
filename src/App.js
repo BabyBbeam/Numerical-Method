@@ -9,6 +9,7 @@ import CramerRule from './containers/CramerRule';
 import NewtonRaphson from './containers/NewtonRaphson'
 import Secant from './containers/Secant'
 import GaussElimination from './containers/GaussElimination'
+import GaussJordan from './containers/GaussJordan';
 
 class App extends React.Component {
 
@@ -27,6 +28,7 @@ class App extends React.Component {
               <Route exact path="/newton-raphson" component={NewtonRaphson} />
               <Route exact path="/secant" component={Secant} />
               <Route exact path="/gauss-elimination" component={GaussElimination} />
+              <Route exact path="/gauss-jordan" component={GaussJordan} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>
           </div>

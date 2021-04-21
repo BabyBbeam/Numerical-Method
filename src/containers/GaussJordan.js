@@ -6,7 +6,7 @@ import ModalPopup from '../components/ModalPopup'
 import apis from '../api/index'
 import './Content.css'
 
-class GaussElimation extends Component {
+class GaussJordan extends Component {
 
     state = {
         n: 2,
@@ -123,7 +123,7 @@ class GaussElimation extends Component {
                     apiData = {this.state.apiData}
                     onClick = {this.onClickInsert}
                 />
-                <h1>Gauss Elimation Method</h1>
+                <h1>Gauss Jordan Method</h1>
                 <Row className='add-del-row'>
                     <Button onClick={this.onClickAdd}>Add</Button>
                     <span className='n-text'>{this.state.n} x {this.state.n}</span>
@@ -146,4 +146,4 @@ class GaussElimation extends Component {
     }
 }
 
-export default GaussElimation
+export default GaussJordan

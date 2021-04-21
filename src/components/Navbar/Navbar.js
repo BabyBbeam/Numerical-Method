@@ -26,12 +26,15 @@ const roet_menu = (
 
 const matrix_menu = (
     <Menu className='roet-menu'>
-        <Menu.Item className='roet-menu-item'> 
-            <Link to="/cramer-rule" replace>Cramer's Rule</Link>
-        </Menu.Item>
-        <Menu.Item className='roet-menu-item'>
-        <Link to="/gauss-elimination" replace>Gauss Elimination Method</Link>
-        </Menu.Item>
+      <Menu.Item className='roet-menu-item'> 
+        <Link to="/cramer-rule" replace>Cramer's Rule</Link>
+      </Menu.Item>
+      <Menu.Item className='roet-menu-item'>
+          <Link to="/gauss-elimination" replace>Gauss Elimination Method</Link>
+      </Menu.Item>
+      <Menu.Item className='roet-menu-item'>
+          <Link to="/gauss-jordan" replace>Gauss Jordan Method</Link>
+      </Menu.Item>
     </Menu>
 );
 
