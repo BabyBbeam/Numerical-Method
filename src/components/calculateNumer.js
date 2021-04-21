@@ -187,7 +187,7 @@ export function calCramerRule(n, initMatrixA, initMatrixB){
 }
 
 export function calGaussElimination(n, initMatrixA, initMatrixB){
-    
+
     let MatrixA = cloneArray(initMatrixA)
     let MatrixB = [...initMatrixB]
     let data = []
@@ -224,6 +224,52 @@ export function calGaussElimination(n, initMatrixA, initMatrixB){
         }
         x[i] = (MatrixB[i]-sum)/MatrixA[i][i]
         data[i] = {key:i+1, x:"x"+(i+1), value:x[i].toPrecision(10)}
+    }
+
+    return data
+}
+
+export function calGaussJordan(n, initMatrixA, initMatrixB){
+    
+    let MatrixA = cloneArray(initMatrixA)
+    let MatrixB = [...initMatrixB]
+    let x = []
+    let data = []
+    for(let i=1;i<n;i++){
+
+        for(let j=i;j<n;j++){
+
+            let divide = MatrixA[i-1][i-1]
+            let multi = MatrixA[j][i-1]
+
+            for(let k =i-1;k<n;k++){
+                MatrixA[j][k] = MatrixA[j][k] - ((MatrixA[i-1][k]/divide)*multi)
+            }
+
+            MatrixB[j] = MatrixB[j] - ((MatrixB[i-1]/divide)*multi)
+
+        }
+    }
+
+    for(let i=n-2;i>=0;i--){
+
+        for(let j=i;j>=0;j--){
+
+            let divide = MatrixA[i+1][i+1]
+            let multi = MatrixA[j][i+1]
+
+            for(let k =n-1;k>=i;k++){
+                MatrixA[j][k] = MatrixA[j][k] - ((MatrixA[i+1][k]/divide)*multi)
+            }
+
+            MatrixB[j] = MatrixB[j] - ((MatrixB[i+1]/divide)*multi)
+
+        }
+    }
+
+    for(let i=0;i<n;i++){
+        x.push(MatrixB[i]/MatrixA[i][i])
+        data.push({key:i+1, x:"x"+(i+1), value:x[i].toPrecision(10)})
     }
 
     return data
