@@ -5,28 +5,33 @@ const config = {
         "title": "Swagger Numerical Method"
     },
     "host": "my-json-server.typicode.com/BabyBbeam/Numerical-Method",
-    "tags": [
-        {
-            "name": "Root of Equation",
-            "description": "โจทย์ทั้งหมดของเนื้อหา Root of Equation",
-        }
-    ],
-    "schemes":[
-        "https"
-    ],
+    
     "paths":{
         "/root-of-equation":{
             "get":{
                 "tags":[
-                    "Root of Equation"
+                    "API"
                 ],
                 "summary": "ค้นหาโจทย์ทั้งหมดในเรื่อง Root of Equation",
+                "responses": {
+                    "200": {
+                        "description" : "ทำงานสำเร็จ"
+                    }
+                }
+            }
+        },
+        "/root-of-equation/{ExampleId}":{
+            "get":{
+                "tags":[
+                    "API"
+                ],
+                "summary": "ระบุหมายเลขโจทย์ในเรื่อง Root of Equation",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "ExampleId",
                         "in": "path",
-                        "description": "หมายเลขไอดีของโจทย์ตัวอย่าง",
-                        "required": false,
+                        "description": "หมายเลขไอดีของโจทย์ตัวอย่างที่จะค้นหา",
+                        "required": true,
                         "type": "integer",
                         "format": "int64"
                     }
@@ -34,6 +39,51 @@ const config = {
                 "responses": {
                     "200": {
                         "description" : "ทำงานสำเร็จ"
+                    },
+                    "404":{
+                        "description" : "ไม่พบโจทย์"
+                    }
+                }
+            }
+        },
+        "/matrix":{
+            "get":{
+                "tags":[
+                    "API"
+                ],
+                "summary": "ค้นหาโจทย์ทั้งหมดในเรื่อง Matrix",
+                "responses": {
+                    "200": {
+                        "description" : "ทำงานสำเร็จ"
+                    },
+                    "404":{
+                        "description" : "ไม่พบโจทย์"
+                    }
+                }
+            }
+        },
+        "/matrix/{ExampleId}":{
+            "get":{
+                "tags":[
+                    "API"
+                ],
+                "summary": "ระบุหมายเลขโจทย์ในเรื่อง Matrix",
+                "parameters": [
+                    {
+                        "name": "ExampleId",
+                        "in": "path",
+                        "description": "หมายเลขไอดีของโจทย์ตัวอย่าง",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description" : "ทำงานสำเร็จ"
+                    },
+                    "404":{
+                        "description" : "ไม่พบโจทย์"
                     }
                 }
             }
