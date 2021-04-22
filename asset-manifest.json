@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/Numerical-Method/static/css/main.39e90898.chunk.css",
-    "main.js": "/Numerical-Method/static/js/main.4fcf3371.chunk.js",
-    "main.js.map": "/Numerical-Method/static/js/main.4fcf3371.chunk.js.map",
-    "runtime-main.js": "/Numerical-Method/static/js/runtime-main.3a0d8f19.js",
-    "runtime-main.js.map": "/Numerical-Method/static/js/runtime-main.3a0d8f19.js.map",
-    "static/css/2.98e7ac70.chunk.css": "/Numerical-Method/static/css/2.98e7ac70.chunk.css",
-    "static/js/2.9e89a4fd.chunk.js": "/Numerical-Method/static/js/2.9e89a4fd.chunk.js",
-    "static/js/2.9e89a4fd.chunk.js.map": "/Numerical-Method/static/js/2.9e89a4fd.chunk.js.map",
-    "static/js/3.68cc6dce.chunk.js": "/Numerical-Method/static/js/3.68cc6dce.chunk.js",
-    "static/js/3.68cc6dce.chunk.js.map": "/Numerical-Method/static/js/3.68cc6dce.chunk.js.map",
+    "main.js": "/Numerical-Method/static/js/main.fe0a8d0b.chunk.js",
+    "main.js.map": "/Numerical-Method/static/js/main.fe0a8d0b.chunk.js.map",
+    "runtime-main.js": "/Numerical-Method/static/js/runtime-main.c9e6a5a0.js",
+    "runtime-main.js.map": "/Numerical-Method/static/js/runtime-main.c9e6a5a0.js.map",
+    "static/css/2.084ba4f2.chunk.css": "/Numerical-Method/static/css/2.084ba4f2.chunk.css",
+    "static/js/2.e092984f.chunk.js": "/Numerical-Method/static/js/2.e092984f.chunk.js",
+    "static/js/2.e092984f.chunk.js.map": "/Numerical-Method/static/js/2.e092984f.chunk.js.map",
+    "static/js/3.373d2a17.chunk.js": "/Numerical-Method/static/js/3.373d2a17.chunk.js",
+    "static/js/3.373d2a17.chunk.js.map": "/Numerical-Method/static/js/3.373d2a17.chunk.js.map",
     "index.html": "/Numerical-Method/index.html",
-    "static/css/2.98e7ac70.chunk.css.map": "/Numerical-Method/static/css/2.98e7ac70.chunk.css.map",
+    "static/css/2.084ba4f2.chunk.css.map": "/Numerical-Method/static/css/2.084ba4f2.chunk.css.map",
     "static/css/main.39e90898.chunk.css.map": "/Numerical-Method/static/css/main.39e90898.chunk.css.map",
-    "static/js/2.9e89a4fd.chunk.js.LICENSE.txt": "/Numerical-Method/static/js/2.9e89a4fd.chunk.js.LICENSE.txt"
+    "static/js/2.e092984f.chunk.js.LICENSE.txt": "/Numerical-Method/static/js/2.e092984f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3a0d8f19.js",
-    "static/css/2.98e7ac70.chunk.css",
-    "static/js/2.9e89a4fd.chunk.js",
+    "static/js/runtime-main.c9e6a5a0.js",
+    "static/css/2.084ba4f2.chunk.css",
+    "static/js/2.e092984f.chunk.js",
     "static/css/main.39e90898.chunk.css",
-    "static/js/main.4fcf3371.chunk.js"
+    "static/js/main.fe0a8d0b.chunk.js"
   ]
 }
