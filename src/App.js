@@ -11,6 +11,7 @@ import Secant from './containers/Secant'
 import GaussElimination from './containers/GaussElimination'
 import GaussJordan from './containers/GaussJordan';
 import LUDecomposition from './containers/LUComposition';
+import APIDoc from './components/APIDoc';
 
 class App extends React.Component {
 
@@ -31,6 +32,7 @@ class App extends React.Component {
               <Route exact path="/gauss-elimination" component={GaussElimination} />
               <Route exact path="/gauss-jordan" component={GaussJordan} />
               <Route exact path="/lu-decomposition" component={LUDecomposition} />
+              <Route exact path="/swagger" component={APIDoc} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>
           </div>

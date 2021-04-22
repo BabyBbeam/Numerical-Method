@@ -57,6 +57,7 @@ class Navbar extends Component {
                             <Dropdown overlay={matrix_menu} placement="bottomCenter">
                                 <Button>Matrix</Button>
                             </Dropdown>
+                            <Button><Link to="/swagger" replace>API Document</Link></Button>
                         </Col>
                     </Row>
                 </div>
