@@ -21,8 +21,8 @@ class App extends React.Component {
         <HashRouter>
           <Navbar />
           <div className="content">
-            <Redirect exact from="/" to="/bisection" />
             <Switch>
+              <Route exact path="/"><Redirect to ="/bisection" /></Route>
               <Route exact path="/bisection" component={Bisection} />
               <Route exact path="/false-position" component={FalsePosition} />
               <Route exact path="/one-point" component={OnePoint} />
