@@ -343,3 +343,62 @@ export function calLUDecomposition(n, initMatrixA, initMatrixB){
 
     return data
 }
+
+export function calConjugate(n, initMatrixA, initMatrixB, initError){
+    
+    let MatrixA = cloneArray(initMatrixA)
+    let MatrixB = [...initMatrixB]
+    let error = parseFloat(initError)
+    console.log(error)
+    let x = []
+    let data = []
+    let checkError = 9999999
+
+    for(let i=0;i<n;i++){
+        x.push(0)
+    }
+
+    let R = math.multiply(MatrixA, x)
+    R = math.subtract(R, MatrixB)
+
+    let D = math.multiply(R, -1)
+    let lambda, alpha, temp
+
+    while(checkError > error){
+
+        lambda = math.transpose(D)
+        temp = lambda
+        lambda = math.multiply(lambda, R)
+        temp = math.multiply(temp, MatrixA)
+        temp = math.multiply(temp, D)
+
+        lambda = lambda/temp
+        lambda = math.multiply(lambda, -1)
+
+        temp = math.multiply(lambda, D)
+        x = math.add(x, temp)
+        temp = math.multiply(MatrixA, x)
+        R = math.subtract(temp, MatrixB)
+
+        temp = math.transpose(R)
+        temp = math.multiply(temp, R)
+
+        checkError = math.sqrt(temp)
+        alpha = math.transpose(R)
+        alpha = math.multiply(alpha, MatrixA)
+        alpha = math.multiply(alpha, D)
+
+        temp = math.transpose(D)
+        temp = math.multiply(temp, MatrixA)
+        temp = math.multiply(temp, D)
+
+        alpha = alpha/temp
+
+        temp = math.multiply(alpha, D)
+        D = math.multiply(R, -1)
+        D = math.add(D, temp)
+
+    }
+    x.map((x, i) => data.push({key:i+1, x:"x"+(i+1), value:x.toPrecision(10)}))
+    return data
+}
