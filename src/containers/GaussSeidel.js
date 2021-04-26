@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Button, Table, Input } from 'antd'
-import { calConjugate, cloneArray } from '../components/calculateNumer'
+import { calGaussSeidel, cloneArray } from '../components/calculateNumer'
 import {MatrixInputA, MatrixInputB} from '../components/MatrixInput'
 import ModalPopup from '../components/ModalPopup'
 import apis from '../api/index'
@@ -31,13 +31,13 @@ class GaussSeidel extends Component {
     }
 
     onClickCalculate = e =>{
-        try{
-            this.setState({iterationData:calConjugate(this.state.n, this.state.matrixA, this.state.matrixB, this.state.error)})
+        //try{
+            this.setState({iterationData:calGaussSeidel(this.state.n, this.state.matrixA, this.state.matrixB, this.state.error)})
             this.setState({isCal:true})
-        }
-        catch (err){
-            console.log("error")
-        }
+        // }
+        // catch (err){
+        //     console.log("error")
+        // }
     }
 
     async getData(){

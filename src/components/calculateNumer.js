@@ -349,7 +349,6 @@ export function calConjugate(n, initMatrixA, initMatrixB, initError){
     let MatrixA = cloneArray(initMatrixA)
     let MatrixB = [...initMatrixB]
     let error = parseFloat(initError)
-    console.log(error)
     let x = []
     let data = []
     let checkError = 9999999
@@ -398,6 +397,101 @@ export function calConjugate(n, initMatrixA, initMatrixB, initError){
         D = math.multiply(R, -1)
         D = math.add(D, temp)
 
+    }
+    x.map((x, i) => data.push({key:i+1, x:"x"+(i+1), value:x.toPrecision(10)}))
+    return data
+}
+
+export function calJacobi(n, initMatrixA, initMatrixB, initError){
+    
+    let MatrixA = cloneArray(initMatrixA)
+    let MatrixB = [...initMatrixB]
+    let error = parseFloat(initError)
+    let x = []
+    let tmpX = []
+    let data = []
+    let checkError = true
+    let iteration = 1
+
+    for(let i=0;i<n;i++){
+        x.push(1)
+        tmpX.push(1)
+    }
+
+    while(checkError){
+
+        if(iteration > 500){
+            x.map((x, i) => data.push({key:i+1, x:"x"+(i+1), value:"ไม่สามารถหาค่าได้"}))
+            return data
+        }
+
+        checkError = false
+
+        for(let i=0;i<n;i++){
+
+            let sum = 0
+            for(let j=0;j<n;j++){
+                if(i!==j){
+                    sum = sum + MatrixA[i][j]*x[j]
+                }
+            }
+            tmpX[i] = (MatrixB[i]-sum)/MatrixA[i][i]
+            
+            let tmpErr = Math.abs((tmpX[i]-x[i])/tmpX[i])
+            if(tmpErr > error){
+                checkError = true
+            }
+        }
+
+        x = tmpX.map(x => x)
+        iteration = iteration + 1
+    }
+    x.map((x, i) => data.push({key:i+1, x:"x"+(i+1), value:x.toPrecision(10)}))
+    return data
+}
+
+export function calGaussSeidel(n, initMatrixA, initMatrixB, initError){
+    
+    let MatrixA = cloneArray(initMatrixA)
+    let MatrixB = [...initMatrixB]
+    let error = parseFloat(initError)
+    let x = []
+    let tmpX = null
+    let data = []
+    let checkError = true
+    let iteration = 1
+
+    for(let i=0;i<n;i++){
+        x.push(1)
+    }
+
+    while(checkError){
+
+        if(iteration > 500){
+            x.map((x, i) => data.push({key:i+1, x:"x"+(i+1), value:"ไม่สามารถหาค่าได้"}))
+            return data
+        }
+
+        checkError = false
+
+        for(let i=0;i<n;i++){
+
+            let sum = 0
+            for(let j=0;j<n;j++){
+                if(i!==j){
+                    sum = sum + MatrixA[i][j]*x[j]
+                }
+            }
+            tmpX = (MatrixB[i]-sum)/MatrixA[i][i]
+            
+            let tmpErr = Math.abs((tmpX-x[i])/tmpX)
+            if(tmpErr > error){
+                checkError = true
+            }
+            x[i] = tmpX
+        }
+
+        iteration = iteration + 1
     }
     x.map((x, i) => data.push({key:i+1, x:"x"+(i+1), value:x.toPrecision(10)}))
     return data

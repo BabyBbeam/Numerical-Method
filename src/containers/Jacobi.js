@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Button, Table, Input } from 'antd'
-import { calConjugate, cloneArray } from '../components/calculateNumer'
+import { calJacobi, cloneArray } from '../components/calculateNumer'
 import {MatrixInputA, MatrixInputB} from '../components/MatrixInput'
 import ModalPopup from '../components/ModalPopup'
 import apis from '../api/index'
@@ -32,7 +32,7 @@ class Jacobi extends Component {
 
     onClickCalculate = e =>{
         try{
-            this.setState({iterationData:calConjugate(this.state.n, this.state.matrixA, this.state.matrixB, this.state.error)})
+            this.setState({iterationData:calJacobi(this.state.n, this.state.matrixA, this.state.matrixB, this.state.error)})
             this.setState({isCal:true})
         }
         catch (err){
@@ -84,7 +84,6 @@ class Jacobi extends Component {
         let changedArr = this.state.matrixA
         let index = e.target.name.split('_')
         changedArr[parseInt(index[1])][parseInt(index[2])] = e.target.value
-        console.log(e.target.value)
         this.setState({matrixA:changedArr})
     }
 
@@ -92,7 +91,6 @@ class Jacobi extends Component {
         let changedArr = this.state.matrixB
         let index = e.target.name.split('_')
         changedArr[parseInt(index[1])]= e.target.value
-        console.log(e.target.value)
         this.setState({matrixB:changedArr})
     }
 
