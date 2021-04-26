@@ -42,6 +42,9 @@ const matrix_menu = (
           <Link to="/conjugate-gradient" replace>Conjugate Gradient Method</Link>
       </Menu.Item>
       <Menu.Item className='roet-menu-item'>
+          <Link to="/jacobi" replace>Jacobi Method</Link>
+      </Menu.Item>
+      <Menu.Item className='roet-menu-item'>
           <Link to="/gauss-seidel" replace>Gauss-Seidel Method</Link>
       </Menu.Item>
     </Menu>
