@@ -39,7 +39,7 @@ const matrix_menu = (
           <Link to="/lu-decomposition" replace>LU Decomposition Method</Link>
       </Menu.Item>
       <Menu.Item className='roet-menu-item'>
-          <Link to="/conjugate" replace>Conjugate Method</Link>
+          <Link to="/conjugate-gradient" replace>Conjugate Gradient Method</Link>
       </Menu.Item>
     </Menu>
 );
