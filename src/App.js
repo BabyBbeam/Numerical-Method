@@ -6,15 +6,16 @@ import Bisection from './containers/Bisection';
 import FalsePosition from './containers/FalsePosition';
 import OnePoint from './containers/Onepoint'
 import CramerRule from './containers/CramerRule';
-import NewtonRaphson from './containers/NewtonRaphson'
-import Secant from './containers/Secant'
-import GaussElimination from './containers/GaussElimination'
+import NewtonRaphson from './containers/NewtonRaphson';
+import Secant from './containers/Secant';
+import GaussElimination from './containers/GaussElimination';
 import GaussJordan from './containers/GaussJordan';
 import LUDecomposition from './containers/LUComposition';
 import APIDoc from './components/APIDoc';
 import ConjugateGradient from './containers/Conjugate';
 import GaussSeidel from './containers/GaussSeidel';
 import Jacobi from './containers/Jacobi';
+import NewtonDivide from './containers/NewtonDivide';
 
 class App extends React.Component {
 
@@ -38,6 +39,7 @@ class App extends React.Component {
               <Route exact path="/conjugate-gradient" component={ConjugateGradient} />
               <Route exact path="/jacobi" component={Jacobi} />
               <Route exact path="/gauss-seidel" component={GaussSeidel} />
+              <Route exact path="/newton-divide" component={NewtonDivide} />
               <Route exact path="/swagger" component={APIDoc} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>

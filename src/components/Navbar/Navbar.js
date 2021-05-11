@@ -59,7 +59,7 @@ const interpolation_menu = (
           <Link to="/lagrange" replace>Lagrange</Link>
         </Menu.Item>
         <Menu.Item className='roet-menu-item'> 
-          <Link to="/lagrange" replace>Spline</Link>
+          <Link to="/spline" replace>Spline</Link>
         </Menu.Item>
     </Menu>
 )
