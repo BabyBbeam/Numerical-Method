@@ -21,8 +21,8 @@ class App extends React.Component {
 
   render() {
     return (
+      <HashRouter>
       <div className="App">
-        <HashRouter>
           <Navbar />
           <div className="content">
             <Switch>
@@ -44,10 +44,11 @@ class App extends React.Component {
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>
           </div>
-        </HashRouter>
+        
         <div className="footer">
         </div>
       </div>
+      </HashRouter>
     );
   }
 }

@@ -8,7 +8,7 @@ class InterpolationInput extends React.Component{
         let arrMatrix = []
         for(let i=0;i<this.props.n;i++){
             for(let j=0;j<2;j++){
-                arrMatrix.push(<Input className='matrix-input' name={'inputA_'+i.toString()+'_'+j} placeholder={i.toString()+j} onChange={this.props.onChange} value={this.props.value[i][j]} autoComplete='off'/>)
+                arrMatrix.push(<Input className='interpolation-input' name={'inputA_'+i.toString()+'_'+j} placeholder={i.toString()+j} onChange={this.props.onChange} value={this.props.value[i][j]} autoComplete='off'/>)
             }
             arrMatrix.push(<div></div>)
         }
