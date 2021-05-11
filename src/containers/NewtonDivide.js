@@ -128,10 +128,10 @@ class NewtonDevide extends Component {
                     <InterpolationInput n={this.state.n} onChange={this.onChangeMatrix} value={this.state.matrix}/>
                 </Row>
                 <Row>
-                    ใช้จุดใดบ้าง <Input onChange={this.onChangeSelectedPoint} value={this.state.selectedPoint} autoComplete="off" />
+                    ใช้จุดใดบ้าง <Input style={{width:'200px', marginLeft:'10px'}} onChange={this.onChangeSelectedPoint} value={this.state.selectedPoint} autoComplete="off" />
                 </Row>
                 <Row>
-                    จุด x ที่ต้องการหาผลลัพธ์ <Input onChange={this.onChangeX} value={this.state.x} autoComplete="off" />
+                    จุด x ที่ต้องการหาผลลัพธ์ <Input style={{width:'200px', marginLeft:'10px'}} onChange={this.onChangeX} value={this.state.x} autoComplete="off" />
                 </Row>
                 <Row type='flex' align='middle' className='row-button'>
                     <Col span={24} className='col-button'>
