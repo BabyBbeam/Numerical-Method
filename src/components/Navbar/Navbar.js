@@ -53,7 +53,13 @@ const matrix_menu = (
 const interpolation_menu = (
     <Menu className='roet-menu'>
         <Menu.Item className='roet-menu-item'> 
-          <Link to="/newton" replace>Newton</Link>
+          <Link to="/newton-divide" replace>Newton Devide</Link>
+        </Menu.Item>
+        <Menu.Item className='roet-menu-item'> 
+          <Link to="/lagrange" replace>Lagrange</Link>
+        </Menu.Item>
+        <Menu.Item className='roet-menu-item'> 
+          <Link to="/lagrange" replace>Spline</Link>
         </Menu.Item>
     </Menu>
 )
