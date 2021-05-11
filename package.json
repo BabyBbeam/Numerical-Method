@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.14.0",
     "axios": "^0.21.1",
+    "expect.js": "^0.3.1",
     "json-server": "^0.16.3",
     "mathjs": "^9.3.0",
     "react": "^17.0.1",
