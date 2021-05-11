@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Row, Col, Button, Table } from 'antd'
-import { calCramerRule, cloneArray } from '../components/calculateNumer'
+import { calNewtonDivide, cloneArray } from '../components/calculateNumer'
 import {InterpolationInput} from '../components/InterpolationInput'
 import ModalPopup from '../components/ModalPopup'
 import apis from '../api/index'
 import './Content.css'
 
-class CramerRule extends Component {
+class NewtonDevide extends Component {
 
     state = {
         n: 2,
@@ -22,7 +22,10 @@ class CramerRule extends Component {
 
     onClickCalculate = e =>{
         try{
-            this.setState({iterationData:calCramerRule(this.state.n, this.state.matrixA, this.state.matrixB)})
+            let tmpMatrix = cloneArray(this.state.matrix)
+            let tmpSelectedPoint = this.state.selectedPoint.split(",")
+            tmpSelectedPoint = tmpSelectedPoint.map(x => (+x)-1)
+            this.setState({ans:calNewtonDivide(tmpMatrix, +this.state.x, tmpSelectedPoint)})
             this.setState({isCal:true})
         }
         catch (err){
@@ -49,8 +52,7 @@ class CramerRule extends Component {
         index = parseInt(index[1])
         this.setState({
             n: this.state.apiData[index]["n"],
-            matrixA : cloneArray(this.state.apiData[index]["matrixA"]),
-            matrixB : [...this.state.apiData[index]["matrixB"]],
+            matrix : cloneArray(this.state.apiData[index]["matrix"]),
             isModalVisible : false
         })
     }
@@ -63,42 +65,30 @@ class CramerRule extends Component {
         let resetArrA = [[null,null],[null,null]]
         let resetArrB = [null,null]
         this.setState({
-            matrixA : resetArrA,
+            matrix : resetArrA,
             matrixB : resetArrB,
             n : 2
         })
     }
 
-    OnChangeMatrixA = e =>{
-        let changedArr = this.state.matrixA
+    OnChangeMatrix = e =>{
+        let changedArr = this.state.matrix
         let index = e.target.name.split('_')
         changedArr[parseInt(index[1])][parseInt(index[2])] = e.target.value
         console.log(e.target.value)
-        this.setState({matrixA:changedArr})
-    }
-
-    OnChangeMatrixB = e =>{
-        let changedArr = this.state.matrixB
-        let index = e.target.name.split('_')
-        changedArr[parseInt(index[1])]= e.target.value
-        console.log(e.target.value)
-        this.setState({matrixB:changedArr})
+        this.setState({matrix:changedArr})
     }
 
     onClickAdd = e =>{
         if(this.state.n < 6){
-            this.state.matrixA.push([])
-            this.state.matrixA.map(x => x.push(null))
-            this.state.matrixB.push(null)
+            this.state.matrix.push([])
             this.setState({n:this.state.n+1})
         } 
     }
 
     onClickDel = e =>{
         if(this.state.n > 2){
-            this.state.matrixA.pop()
-            this.state.matrixA.map(x => x.pop())
-            this.state.matrixB.pop()
+            this.state.matrix.pop()
             this.setState({n:this.state.n-1})
         } 
     }
@@ -117,11 +107,11 @@ class CramerRule extends Component {
                 <h1>Newton's Divided Difference</h1>
                 <Row className='add-del-row'>
                     <Button onClick={this.onClickAdd}>Add</Button>
-                    <span className='n-text'>{this.state.n} x {this.state.n}</span>
+                    <span className='n-text'>{this.state.n}</span>
                     <Button onClick={this.onClickDel}>Del</Button>
                 </Row>
                 <Row>
-                    <InterpolationInput n={this.state.n} onChange={this.OnChangeMatrixA} value={this.state.matrixA}/>
+                    <InterpolationInput n={this.state.n} onChange={this.OnChangeMatrix} value={this.state.matrix}/>
                 </Row>
                 <Row type='flex' align='middle' className='row-button'>
                     <Col span={24} className='col-button'>
@@ -130,10 +120,10 @@ class CramerRule extends Component {
                         <Button size='large' type='primary' className='example-button' onClick={this.onClickExample}>ตัวอย่าง</Button>
                     </Col>
                 </Row>
-                {this.state.isCal ? <Table columns={this.state.iterationColumns} dataSource={this.state.iterationData} size="middle" /> : null}
+                {this.state.isCal ? <div>f({this.state.x}) = {this.state.ans}</div> : null}
             </div>
         )
     }
 }
 
-export default CramerRule
+export default NewtonDevide
