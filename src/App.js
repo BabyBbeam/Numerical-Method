@@ -46,7 +46,6 @@ class App extends React.Component {
           </div>
         </HashRouter>
         <div className="footer">
-        da
         </div>
       </div>
     );

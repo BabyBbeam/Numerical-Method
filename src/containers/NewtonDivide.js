@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Button, Table } from 'antd'
+import { Row, Col, Button, Input } from 'antd'
 import { calNewtonDivide, cloneArray } from '../components/calculateNumer'
 import {InterpolationInput} from '../components/InterpolationInput'
 import ModalPopup from '../components/ModalPopup'
@@ -35,7 +35,7 @@ class NewtonDevide extends Component {
 
     async getData(){
         let tempData = null
-        await apis.getAllMatrix().then(res => {tempData = res.data})
+        await apis.getAllInterpolation().then(res => {tempData = res.data})
         this.setState({apiData:tempData})
         this.setState({hasData:true})
     }
@@ -53,6 +53,8 @@ class NewtonDevide extends Component {
         this.setState({
             n: this.state.apiData[index]["n"],
             matrix : cloneArray(this.state.apiData[index]["matrix"]),
+            selectedPoint : this.state.apiData[index]["selectedPoint"],
+            x : this.state.apiData[index]["x"],
             isModalVisible : false
         })
     }
@@ -71,12 +73,24 @@ class NewtonDevide extends Component {
         })
     }
 
-    OnChangeMatrix = e =>{
+    onChangeMatrix = e =>{
         let changedArr = this.state.matrix
         let index = e.target.name.split('_')
         changedArr[parseInt(index[1])][parseInt(index[2])] = e.target.value
         console.log(e.target.value)
         this.setState({matrix:changedArr})
+    }
+
+    onChangeSelectedPoint = e =>{
+        this.setState({
+            selectedPoint : e.target.value
+        })
+    }
+
+    onChangeX = e =>{
+        this.setState({
+            x : e.target.value
+        })
     }
 
     onClickAdd = e =>{
@@ -111,7 +125,13 @@ class NewtonDevide extends Component {
                     <Button onClick={this.onClickDel}>Del</Button>
                 </Row>
                 <Row>
-                    <InterpolationInput n={this.state.n} onChange={this.OnChangeMatrix} value={this.state.matrix}/>
+                    <InterpolationInput n={this.state.n} onChange={this.onChangeMatrix} value={this.state.matrix}/>
+                </Row>
+                <Row>
+                    ใช้จุดใดบ้าง <Input onChange={this.onChangeSelectedPoint} value={this.state.selectedPoint} autoComplete="off" />
+                </Row>
+                <Row>
+                    จุด x ที่ต้องการหาผลลัพธ์ <Input onChange={this.onChangeX} value={this.state.x} autoComplete="off" />
                 </Row>
                 <Row type='flex' align='middle' className='row-button'>
                     <Col span={24} className='col-button'>
