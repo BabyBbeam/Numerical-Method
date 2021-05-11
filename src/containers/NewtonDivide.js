@@ -10,20 +10,11 @@ class CramerRule extends Component {
 
     state = {
         n: 2,
-        matrixA : [[],[]],
-        matrixB : [],
+        matrix : [[],[]],
+        selectedPoint : null,
+        x : null,
+        ans : null,
         isCal : false,
-        iterationColumns : [
-            {
-                title: 'X',
-                dataIndex: 'x'
-            },
-            {
-                title: 'Value',
-                dataIndex: 'value'
-            }
-        ],
-        iterationData : [],
         isModalVisible : false,
         apiData : [],
         hasData : false,
