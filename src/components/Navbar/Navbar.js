@@ -50,6 +50,14 @@ const matrix_menu = (
     </Menu>
 );
 
+const interpolation_menu = (
+    <Menu className='roet-menu'>
+        <Menu.Item className='roet-menu-item'> 
+          <Link to="/newton" replace>Newton</Link>
+        </Menu.Item>
+    </Menu>
+)
+
 class Navbar extends Component {
     render() {
         return (
@@ -65,6 +73,9 @@ class Navbar extends Component {
                             </Dropdown>
                             <Dropdown overlay={matrix_menu} placement="bottomCenter">
                                 <Button>Matrix</Button>
+                            </Dropdown>
+                            <Dropdown overlay={interpolation_menu} placement="bottomCenter">
+                                <Button>Interpolation</Button>
                             </Dropdown>
                             <Button><Link to="/swagger" replace>API Document</Link></Button>
                         </Col>
