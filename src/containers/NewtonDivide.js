@@ -37,30 +37,16 @@ class NewtonDevide extends Component {
         let tempData = null
         await apis.getAllInterpolation().then(res => {tempData = res.data})
         this.setState({apiData:tempData})
-        this.setState({hasData:true})
-    }
-
-    onClickExample = e =>{
-        if(!this.state.hasData){
-            this.getData()
-        }
-        this.setState({isModalVisible:true})
-    }
-
-    onClickInsert = e =>{
-        let index = e.currentTarget.getAttribute('name').split('_')
-        index = parseInt(index[1])
         this.setState({
-            n: this.state.apiData[index]["n"],
-            matrix : cloneArray(this.state.apiData[index]["matrix"]),
-            selectedPoint : this.state.apiData[index]["selectedPoint"],
-            x : this.state.apiData[index]["x"],
-            isModalVisible : false
+            n: this.state.apiData[0]["n"],
+            matrix : cloneArray(this.state.apiData[0]["matrix"]),
+            selectedPoint : this.state.apiData[0]["selectedPoint"],
+            x : this.state.apiData[0]["x"]
         })
     }
 
-    onClickOk = e =>{
-        this.setState({isModalVisible:false})
+    onClickExample = e =>{
+        this.getData()
     }
 
     onClickReset = e =>{
@@ -110,14 +96,6 @@ class NewtonDevide extends Component {
     render() {
         return (
             <div className='content'>
-                <ModalPopup 
-                    visible = {this.state.isModalVisible}
-                    onOk = {this.onClickOk}
-                    showQuestion = {false}
-                    hasData = {this.state.hasData}
-                    apiData = {this.state.apiData}
-                    onClick = {this.onClickInsert}
-                />
                 <h1>Newton's Divided Difference</h1>
                 <Row className='add-del-row'>
                     <Button onClick={this.onClickAdd}>Add</Button>

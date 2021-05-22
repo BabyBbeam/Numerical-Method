@@ -81,7 +81,7 @@ export function calFalsePosition(init_fx, init_xl, init_xr, init_error){
 
         checkError = math.abs(math.divide(math.subtract(newX, x), newX))
         x = newX
-        data.push({key:iteration, iteration:iteration, x:x.toString(), error:checkError.toString()})
+        data.push({key:iteration, iteration:iteration, x:math.round(x,15).toString(), error:math.round(checkError,15).toString()})
         iteration = iteration + 1
     }
     return data
@@ -106,9 +106,8 @@ export function calOnePoint(init_fx, init_x, init_error){
             break;
         }
         checkError = newCheckError
-        console.log(checkError.toString())
         x = newX
-        data.push({key:iteration, iteration:iteration, x:x.toString(), error:checkError.toString()})
+        data.push({key:iteration, iteration:iteration, x:math.round(x,15).toString(), error:math.round(checkError,15).toString()})
         iteration = iteration + 1
     }
     return data
@@ -130,7 +129,7 @@ export function calNewtonRaphson(initFx, initX, initError){
         newX = math.subtract(x, math.divide(fx.evaluate({x:x}), dfx.evaluate({x:x})))
         checkError = math.abs(math.divide(math.subtract(newX, x), newX))
         x = newX
-        data.push({key:iteration, iteration:iteration, x:x.toString(), error:checkError.toString()})
+        data.push({key:iteration, iteration:iteration, x:math.round(x,15).toString(), error:math.round(checkError,15).toString()})
         iteration = iteration + 1
     } 
     return data
@@ -153,7 +152,7 @@ export function calSecant(initFx, initX0, initX1, initError){
         checkError = math.abs(math.divide(math.subtract(newX, x1), newX))
         x0 = x1
         x1 = newX
-        data.push({key:iteration, iteration:iteration, x:newX.toString(), error:checkError.toString()})
+        data.push({key:iteration, iteration:iteration, x:math.round(newX,15).toString(), error:math.round(checkError,15).toString()})
         iteration = iteration + 1
     }
     return data
@@ -258,7 +257,7 @@ export function calGaussJordan(n, initMatrixA, initMatrixB){
             let divide = MatrixA[i+1][i+1]
             let multi = MatrixA[j][i+1]
 
-            for(let k =n-1;k>=i;k++){
+            for(let k =n-1;k>=i;k--){
                 MatrixA[j][k] = MatrixA[j][k] - ((MatrixA[i+1][k]/divide)*multi)
             }
 

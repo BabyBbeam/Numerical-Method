@@ -46,29 +46,15 @@ class NewtonRaphson extends Component {
         let tempData = null
         await apis.getAllRoe().then(res => {tempData = res.data})
         this.setState({apiData:tempData})
-        this.setState({hasData:true})
-    }
-
-    onClickExample = e =>{
-        if(!this.state.hasData){
-            this.getData()
-        }
-        this.setState({isModalVisible:true})
-    }
-
-    onClickInsert = e =>{
-        let index = e.currentTarget.getAttribute('name').split('_')
-        index = parseInt(index[1])
         this.setState({
-            fx: this.state.apiData[index]["equation"],
-            x : this.state.apiData[index]["initial_x"],
-            error : this.state.apiData[index]["error"],
-            isModalVisible : false
+            fx: this.state.apiData[3]["equation"],
+            x : this.state.apiData[3]["initial_x"],
+            error : this.state.apiData[3]["error"]
         })
     }
 
-    onClickOk = e =>{
-        this.setState({isModalVisible:false})
+    onClickExample = e =>{
+        this.getData()
     }
 
     onClickReset = e =>{
@@ -90,13 +76,6 @@ class NewtonRaphson extends Component {
     render() {
         return (
             <div className='content'>
-                <ModalPopup 
-                    visible = {this.state.isModalVisible}
-                    onOk = {this.onClickOk}
-                    hasData = {this.state.hasData}
-                    apiData = {this.state.apiData}
-                    onClick = {this.onClickInsert}
-                />
                 <h1>Newton Raphson Method</h1>
                 <Row className='input-form' type='flex' align='middle'>
                     <Col span={24}>

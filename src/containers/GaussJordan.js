@@ -43,7 +43,11 @@ class GaussJordan extends Component {
         let tempData = null
         await apis.getAllMatrix().then(res => {tempData = res.data})
         this.setState({apiData:tempData})
-        this.setState({hasData:true})
+        this.setState({
+            n: this.state.apiData[0]["n"],
+            matrixA : cloneArray(this.state.apiData[0]["matrixA"]),
+            matrixB : [...this.state.apiData[0]["matrixB"]]
+        })
     }
 
     onClickExample = e =>{
@@ -51,21 +55,6 @@ class GaussJordan extends Component {
             this.getData()
         }
         this.setState({isModalVisible:true})
-    }
-
-    onClickInsert = e =>{
-        let index = e.currentTarget.getAttribute('name').split('_')
-        index = parseInt(index[1])
-        this.setState({
-            n: this.state.apiData[index]["n"],
-            matrixA : cloneArray(this.state.apiData[index]["matrixA"]),
-            matrixB : [...this.state.apiData[index]["matrixB"]],
-            isModalVisible : false
-        })
-    }
-
-    onClickOk = e =>{
-        this.setState({isModalVisible:false})
     }
 
     onClickReset = e =>{
@@ -115,14 +104,6 @@ class GaussJordan extends Component {
     render() {
         return (
             <div className='content'>
-                <ModalPopup 
-                    visible = {this.state.isModalVisible}
-                    onOk = {this.onClickOk}
-                    showQuestion = {false}
-                    hasData = {this.state.hasData}
-                    apiData = {this.state.apiData}
-                    onClick = {this.onClickInsert}
-                />
                 <h1>Gauss Jordan Method</h1>
                 <Row className='add-del-row'>
                     <Button onClick={this.onClickAdd}>Add</Button>

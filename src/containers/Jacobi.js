@@ -44,14 +44,17 @@ class Jacobi extends Component {
         let tempData = null
         await apis.getAllMatrix().then(res => {tempData = res.data})
         this.setState({apiData:tempData})
-        this.setState({hasData:true})
+        this.setState({
+            n: this.state.apiData[1]["n"],
+            matrixA : cloneArray(this.state.apiData[1]["matrixA"]),
+            matrixB : [...this.state.apiData[1]["matrixB"]],
+            error: this.state.apiData[1]["error"],
+            isModalVisible : false
+        })
     }
 
     onClickExample = e =>{
-        if(!this.state.hasData){
-            this.getData()
-        }
-        this.setState({isModalVisible:true})
+        this.getData()
     }
 
     onClickInsert = e =>{
