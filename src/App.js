@@ -18,6 +18,7 @@ import Jacobi from "./containers/Jacobi";
 import NewtonDivide from "./containers/NewtonDivide";
 import Lagrange from "./containers/Lagrange";
 import Spline from "./containers/Spline";
+import PolynomialRegression from "./containers/PolynomialRegression";
 
 class App extends React.Component {
   render() {
@@ -46,6 +47,7 @@ class App extends React.Component {
               <Route exact path="/newton-divide" component={NewtonDivide} />
               <Route exact path="/lagrange" component={Lagrange} />
               <Route exact path="/spline" component={Spline} />
+              <Route exact path="/polynomial-regression" component={PolynomialRegression} />
               <Route exact path="/swagger" component={APIDoc} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>

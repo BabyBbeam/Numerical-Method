@@ -64,6 +64,17 @@ const interpolation_menu = (
     </Menu>
 )
 
+const regression_menu = (
+  <Menu className='roet-menu'>
+      <Menu.Item className='roet-menu-item'> 
+        <Link to="/polynomial-regression" replace>Polynomial Regression</Link>
+      </Menu.Item>
+      <Menu.Item className='roet-menu-item'> 
+        <Link to="/multi-linear-regression" replace>Multi Linear Regression</Link>
+      </Menu.Item>
+  </Menu>
+)
+
 class Navbar extends Component {
     render() {
         return (
@@ -82,6 +93,9 @@ class Navbar extends Component {
                             </Dropdown>
                             <Dropdown overlay={interpolation_menu} placement="bottomCenter">
                                 <Button>Interpolation</Button>
+                            </Dropdown>
+                            <Dropdown overlay={regression_menu} placement="bottomCenter">
+                                <Button>Regression</Button>
                             </Dropdown>
                             <Button><Link to="/swagger" replace>API Document</Link></Button>
                         </Col>

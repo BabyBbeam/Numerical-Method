@@ -528,3 +528,119 @@ export function calNewtonDivide(matrix, x, selectedPoint){
     }
     return sum.toString()
 }
+
+export function calLagrange(matrix, x, selectedPoint){
+    let n = selectedPoint.length
+    let arrX = []
+    let arrFx = []
+    selectedPoint.map(x => {
+        arrX.push(matrix[x][0])
+        arrFx.push(matrix[x][1])
+    })
+
+    let sum = 0
+    for(let i=0;i<n;i++){
+        let mulUp = 1
+        let mulDown = 1
+        for(let j=0;j<n;j++){
+            if(i!==j){
+                mulUp = math.multiply(math.subtract(math.bignumber(x), arrX[j]), mulUp)
+                mulDown = math.multiply(math.subtract(math.bignumber(arrX[i]), arrX[j]), mulDown)
+            }
+        }
+        sum = math.add(sum, math.multiply(math.divide(mulUp, mulDown), arrFx[i]))
+    }
+    return sum.toString()
+}
+
+export function calSpline(matrix, x){
+
+    let Spline = require('cubic-spline');
+
+    let xs = []
+    let ys = []
+
+    matrix.map((x,i) => {
+        xs.push(x[0])
+        ys.push(x[1])
+    })
+
+    let spline = new Spline(xs, ys);
+
+    return spline.at(+x)
+
+}
+
+function sumMulti(arr,x,n,y,m,size){
+    let sum = 0
+    for(let i = 0;i<size;i++){
+        sum = sum + ((arr[i][x]**n)*(arr[i][y]**m))
+    }
+    return sum
+}
+
+function sumSingle(arr,x,n,size){
+    let sum = 0
+    for(let i = 0;i<size;i++){
+        sum = sum + (arr[i][x]**n)
+    }
+    return sum
+}
+
+export function calPolynomialRegression(matrix, x, k){
+
+    let d = k+1
+    let patternM = []
+
+    for(let i=0;i<d;i++){
+        patternM.push([])
+        for(let j=0;j<d+1;j++){
+            if(i==0&&j==0){
+                patternM[i][j] = matrix.length
+            }
+            else if(i==0&&j==d){
+                patternM[i][j] = sumSingle(matrix, 1, 1, matrix.length)
+            }
+            else if(i==0){
+                patternM[i][j] = sumSingle(matrix, 0, j, matrix.length)
+            }
+            else if(i>j){
+                patternM[i][j] = patternM[j][i]
+            }
+            else if(j==d){
+                patternM[i][j] = sumMulti(matrix, 0, i, 1, 1, matrix.length)
+            }
+            else{
+                patternM[i][j] = sumMulti(matrix, 0, i, 0, j, matrix.length)
+            }
+        }
+    
+    }
+
+    let matrixA = []
+    let matrixB = []
+
+    for(let i=0;i<patternM.length;i++){
+        matrixA.push([])
+        matrixA[i] = patternM[i].slice(0,patternM[0].length-1)
+        matrixB[i] = patternM[i][patternM[0].length-1]
+    }
+
+    let invMatrixA = math.inv(matrixA)
+    let matrixC = math.multiply(invMatrixA, matrixB)
+
+    let sum = matrixC[0]
+
+    for(let i=1;i<matrixC.length;i++){
+        sum = sum + (matrixC[i]*(x**i))
+    }
+    
+    for(let i=0;i<matrixC.length;i++){
+        matrixC[i] = matrixC[i].toString()
+    }
+
+    console.log(sum.toString())
+ 
+    return sum.toString()
+
+}

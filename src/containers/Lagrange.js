@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Button, Input } from 'antd'
-import { calNewtonDivide, cloneArray } from '../components/calculateNumer'
+import { calLagrange, cloneArray } from '../components/calculateNumer'
 import {InterpolationInput} from '../components/InterpolationInput'
 import apis from '../api/index'
 import './Content.css'
@@ -24,7 +24,7 @@ class Lagrange extends Component {
             let tmpMatrix = cloneArray(this.state.matrix)
             let tmpSelectedPoint = this.state.selectedPoint.split(",")
             tmpSelectedPoint = tmpSelectedPoint.map(x => (+x)-1)
-            this.setState({ans:calNewtonDivide(tmpMatrix, +this.state.x, tmpSelectedPoint)})
+            this.setState({ans:calLagrange(tmpMatrix, +this.state.x, tmpSelectedPoint)})
             this.setState({isCal:true})
         }
         catch (err){

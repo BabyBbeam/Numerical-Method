@@ -1,30 +1,27 @@
 import React, { Component } from 'react'
 import { Row, Col, Button, Input } from 'antd'
-import { calNewtonDivide, calSpline, cloneArray } from '../components/calculateNumer'
+import { calPolynomialRegression, calSpline, cloneArray } from '../components/calculateNumer'
 import {InterpolationInput} from '../components/InterpolationInput'
 import apis from '../api/index'
 import './Content.css'
 
-class Spline extends Component {
+class PolynomialRegression extends Component {
 
     state = {
         n: 2,
         matrix : [[],[]],
-        selectedPoint : null,
+        k : 1,
         x : null,
         ans : null,
         isCal : false,
         isModalVisible : false,
         apiData : [],
-        hasData : false,
     }
 
     onClickCalculate = e =>{
         try{
             let tmpMatrix = cloneArray(this.state.matrix)
-            let tmpSelectedPoint = this.state.selectedPoint.split(",")
-            tmpSelectedPoint = tmpSelectedPoint.map(x => (+x)-1)
-            this.setState({ans:calSpline(tmpMatrix, +this.state.x)})
+            this.setState({ans:calPolynomialRegression(tmpMatrix, +this.state.x, +this.state.k)})
             this.setState({isCal:true})
         }
         catch (err){
@@ -62,13 +59,12 @@ class Spline extends Component {
         let changedArr = this.state.matrix
         let index = e.target.name.split('_')
         changedArr[parseInt(index[1])][parseInt(index[2])] = e.target.value
-        console.log(e.target.value)
         this.setState({matrix:changedArr})
     }
 
-    onChangeSelectedPoint = e =>{
+    onChangeK = e =>{
         this.setState({
-            selectedPoint : e.target.value
+            k : e.target.value
         })
     }
 
@@ -95,7 +91,7 @@ class Spline extends Component {
     render() {
         return (
             <div className='content'>
-                <h1>Spline Interpolation</h1>
+                <h1>Polynomial Regression</h1>
                 <Row className='add-del-row'>
                     <Button onClick={this.onClickAdd}>Add</Button>
                     <span className='n-text'>{this.state.n}</span>
@@ -104,9 +100,9 @@ class Spline extends Component {
                 <Row>
                     <InterpolationInput n={this.state.n} onChange={this.onChangeMatrix} value={this.state.matrix}/>
                 </Row>
-                {/* <Row>
-                    ใช้จุดใดบ้าง <Input style={{width:'200px', marginLeft:'10px'}} onChange={this.onChangeSelectedPoint} value={this.state.selectedPoint} autoComplete="off" />
-                </Row> */}
+                <Row>
+                    จำนวนยกกำลังที่ต้องการ <Input style={{width:'200px', marginLeft:'10px'}} onChange={this.onChangeK} value={this.state.k} autoComplete="off" />
+                </Row>
                 <Row>
                     จุด x ที่ต้องการหาผลลัพธ์ <Input style={{width:'200px', marginLeft:'10px'}} onChange={this.onChangeX} value={this.state.x} autoComplete="off" />
                 </Row>
@@ -123,4 +119,4 @@ class Spline extends Component {
     }
 }
 
-export default Spline
+export default PolynomialRegression
