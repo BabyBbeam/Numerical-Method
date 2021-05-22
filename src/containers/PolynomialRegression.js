@@ -31,12 +31,11 @@ class PolynomialRegression extends Component {
 
     async getData(){
         let tempData = null
-        await apis.getAllInterpolation().then(res => {tempData = res.data})
+        await apis.getAllRegression().then(res => {tempData = res.data})
         this.setState({apiData:tempData})
         this.setState({
             n: this.state.apiData[0]["n"],
             matrix : cloneArray(this.state.apiData[0]["matrix"]),
-            selectedPoint : this.state.apiData[0]["selectedPoint"],
             x : this.state.apiData[0]["x"]
         })
     }
