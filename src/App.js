@@ -16,6 +16,8 @@ import ConjugateGradient from "./containers/Conjugate";
 import GaussSeidel from "./containers/GaussSeidel";
 import Jacobi from "./containers/Jacobi";
 import NewtonDivide from "./containers/NewtonDivide";
+import Lagrange from "./containers/Lagrange";
+import Spline from "./containers/Spline";
 
 class App extends React.Component {
   render() {
@@ -42,6 +44,8 @@ class App extends React.Component {
               <Route exact path="/jacobi" component={Jacobi} />
               <Route exact path="/gauss-seidel" component={GaussSeidel} />
               <Route exact path="/newton-divide" component={NewtonDivide} />
+              <Route exact path="/lagrange" component={Lagrange} />
+              <Route exact path="/spline" component={Spline} />
               <Route exact path="/swagger" component={APIDoc} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>
