@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Row, Col , Input, Button, Table } from 'antd'
+import { Col , Input, Button, Table } from 'antd'
 import apis from '../api/index'
 import { calBisection } from '../components/calculateNumer'
-import ModalPopup from '../components/ModalPopup'
 import './Content.css'
 
 class Bisection extends Component {
@@ -81,29 +80,23 @@ class Bisection extends Component {
         return (
             <div className='content'>
                 <h1>Bisection Method</h1>
-                <Row className='input-form' type='flex' align='middle'>
-                    <Col span={24}>
-                        <span>f(x) :</span><Input className='input-form-fx' placeholder='Example | x^4-13' value={this.state.fx} onChange={this.OnChangeFx} />
-                    </Col>
-                </Row>
-                <Row className='input-form' type='flex' align='middle'>
-                    <Col span={8} className='col-input-xl'>
-                        xl :<Input className='input-form-init' placeholder='1.5' value={this.state.xl} onChange={this.OnChangeXl} />
-                    </Col>
-                    <Col span={8}>
-                        xr :<Input className='input-form-init' placeholder='2.0' value={this.state.xr} onChange={this.OnChangeXr} />
-                    </Col>
-                    <Col span={8} className='col-input-err'>
-                        error :<Input className='input-form-err' placeholder='0.00001' value={this.state.error} onChange={this.onChangeErr} />
-                    </Col>
-                </Row>
-                <Row type='flex' align='middle' className='row-button'>
+                <div className='input-form' type='flex' align='middle'>
+                    {/* <Col span={24}> */}
+                    <span>f(x) :</span><Input className='input-form-fx' placeholder='Example | x^4-13' value={this.state.fx} onChange={this.OnChangeFx} />
+                    {/* </Col> */}
+                </div>
+                <div style={{marginBottom:'5px',fontSize:'20px'}}>                    
+                        xl :<Input style={{width:'100px'}} placeholder='1.5' value={this.state.xl} onChange={this.OnChangeXl} />
+                        xr :<Input style={{width:'100px'}} placeholder='2.0' value={this.state.xr} onChange={this.OnChangeXr} />
+                        error :<Input style={{width:'100px'}} placeholder='0.00001' value={this.state.error} onChange={this.onChangeErr} />
+                </div>
+                <div type='flex' align='middle' className='div-button'>
                     <Col span={24} className='col-button'>
                         <Button size='large' type='primary' className='reset-button' onClick={this.onClickReset}>Reset</Button>
                         <Button size='large' type='primary' className='cal-button' onClick={this.onClickCalculate}>คำนวณ</Button>
                         <Button size='large' type='primary' className='example-button' onClick={this.onClickExample}>ตัวอย่าง</Button>
                     </Col>
-                </Row>
+                </div>
                 {this.state.isCal ? <Table columns={this.state.iterationColumns} dataSource={this.state.iterationData} size="middle" /> : null}
             </div>
         )

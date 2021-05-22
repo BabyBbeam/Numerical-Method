@@ -69,7 +69,7 @@ class Navbar extends Component {
         return (
             <div>
                 <div>
-                    <Row className='navbar-row' type="flex" align="middle">
+                    <div className='navbar-row' type="flex" align="middle">
                         <Col span={12} className='logo'>
                             <span>Numerical Method</span>
                         </Col>
@@ -85,7 +85,7 @@ class Navbar extends Component {
                             </Dropdown>
                             <Button><Link to="/swagger" replace>API Document</Link></Button>
                         </Col>
-                    </Row>
+                    </div>
                 </div>
             </div>
         )
