@@ -85,7 +85,7 @@ class Bisection extends Component {
                     <span>f(x) :</span><Input className='input-form-fx' placeholder='Example | x^4-13' value={this.state.fx} onChange={this.OnChangeFx} />
                     {/* </Col> */}
                 </div>
-                <div style={{marginBottom:'5px',fontSize:'20px'}}>                    
+                <div style={{marginBottom:'10px',fontSize:'20px'}}>                    
                         xl :<Input style={{width:'100px'}} placeholder='1.5' value={this.state.xl} onChange={this.OnChangeXl} />
                         xr :<Input style={{width:'100px'}} placeholder='2.0' value={this.state.xr} onChange={this.OnChangeXr} />
                         error :<Input style={{width:'100px'}} placeholder='0.00001' value={this.state.error} onChange={this.onChangeErr} />
