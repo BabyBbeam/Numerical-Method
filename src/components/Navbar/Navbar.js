@@ -69,9 +69,9 @@ const regression_menu = (
       <Menu.Item className='roet-menu-item'> 
         <Link to="/polynomial-regression" replace>Polynomial Regression</Link>
       </Menu.Item>
-      <Menu.Item className='roet-menu-item'> 
+      {/* <Menu.Item className='roet-menu-item'> 
         <Link to="/multi-linear-regression" replace>Multi Linear Regression</Link>
-      </Menu.Item>
+      </Menu.Item> */}
   </Menu>
 )
 
