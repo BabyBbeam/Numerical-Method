@@ -28,9 +28,7 @@ class Bisection extends Component {
             }
         ],
         iterationData : [],
-        isModalVisible : false,
-        apiData : [],
-        hasData : false,
+        apiData : []
     }
 
     onClickCalculate = e =>{
@@ -47,30 +45,16 @@ class Bisection extends Component {
         let tempData = null
         await apis.getAllRoe().then(res => {tempData = res.data})
         this.setState({apiData:tempData})
-        this.setState({hasData:true})
-    }
-
-    onClickExample = e =>{
-        if(!this.state.hasData){
-            this.getData()
-        }
-        this.setState({isModalVisible:true})
-    }
-
-    onClickInsert = e =>{
-        let index = e.currentTarget.getAttribute('name').split('_')
-        index = parseInt(index[1])
         this.setState({
-            fx: this.state.apiData[index]["equation"],
-            xl : this.state.apiData[index]["xl"],
-            xr : this.state.apiData[index]["xr"],
-            error : this.state.apiData[index]["error"],
-            isModalVisible : false
+            fx: this.state.apiData[0]["equation"],
+            xl : this.state.apiData[0]["xl"],
+            xr : this.state.apiData[0]["xr"],
+            error : this.state.apiData[0]["error"],
         })
     }
 
-    onClickOk = e =>{
-        this.setState({isModalVisible:false})
+    onClickExample = e =>{
+        this.getData()
     }
 
     onClickReset = e =>{
@@ -96,13 +80,6 @@ class Bisection extends Component {
     render() {
         return (
             <div className='content'>
-                <ModalPopup 
-                    visible = {this.state.isModalVisible}
-                    onOk = {this.onClickOk}
-                    hasData = {this.state.hasData}
-                    apiData = {this.state.apiData}
-                    onClick = {this.onClickInsert}
-                />
                 <h1>Bisection Method</h1>
                 <Row className='input-form' type='flex' align='middle'>
                     <Col span={24}>

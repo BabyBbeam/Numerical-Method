@@ -38,7 +38,7 @@ export function calBisection(init_fx, init_xl, init_xr, init_error) {
         }
         checkError = math.abs(math.divide(math.subtract(newXm, xm), newXm))
         xm = newXm
-        data.push({key:iteration, iteration:iteration, x:xm.toString(), error:checkError.toString()})
+        data.push({key:iteration, iteration:iteration, x:math.round(xm,15).toString(), error:math.round(checkError,15).toString()})
         iteration = iteration + 1
     }
     return data
