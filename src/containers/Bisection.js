@@ -60,8 +60,9 @@ class Bisection extends Component {
         this.setState({fx:"",xl:null,xr:null,error:null,isCal:false})
     }
 
+    //ฟังก์ชั่นรับค่า FX จาก Input หน้าเว็บ
     OnChangeFx = e =>{
-        this.setState({fx:e.target.value})
+        this.setState({fx:e.target.value}) //Set ค่าที่รับมาจากช่อง Input ไปไว้ที่ state fx
     }
 
     OnChangeXl = e =>{
@@ -78,7 +79,8 @@ class Bisection extends Component {
 
     render() {
         return (
-            <div className='content'>
+            // แสดงหน้าเว็บ
+            <div className='content'> 
                 <h1>Bisection Method</h1>
                 <div className='input-form' type='flex' align='middle'>
                     {/* <Col span={24}> */}

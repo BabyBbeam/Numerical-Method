@@ -19,7 +19,7 @@ class NewtonDevide extends Component {
         apiData : [],
         hasData : false,
     }
-
+   //การคำนวณ
     onClickCalculate = e =>{
         try{
             let tmpMatrix = cloneArray(this.state.matrix)
@@ -32,7 +32,7 @@ class NewtonDevide extends Component {
             console.log("error")
         }
     }
-
+ 
     async getData(){
         let tempData = null
         await apis.getAllInterpolation().then(res => {tempData = res.data})
@@ -59,6 +59,7 @@ class NewtonDevide extends Component {
         })
     }
 
+    //กรอกค่าในช่องInput
     onChangeMatrix = e =>{
         let changedArr = this.state.matrix
         let index = e.target.name.split('_')
@@ -66,13 +67,14 @@ class NewtonDevide extends Component {
         console.log(e.target.value)
         this.setState({matrix:changedArr})
     }
-
+  //กรอกค่าจุดที่ต้องการใช้คำนวณ
     onChangeSelectedPoint = e =>{
         this.setState({
             selectedPoint : e.target.value
         })
     }
 
+  //รับค่าx
     onChangeX = e =>{
         this.setState({
             x : e.target.value
@@ -92,9 +94,10 @@ class NewtonDevide extends Component {
             this.setState({n:this.state.n-1})
         } 
     }
-
+  
     render() {
         return (
+            //แสดงหน้าเว็บ
             <div className='content'>
                 <h1>Newton's Divided Difference</h1>
                 <Row className='add-del-row'>
