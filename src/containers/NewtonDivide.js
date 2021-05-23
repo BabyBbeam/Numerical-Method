@@ -32,7 +32,7 @@ class NewtonDevide extends Component {
             console.log("error")
         }
     }
- 
+  //ดึงAPI
     async getData(){
         let tempData = null
         await apis.getAllInterpolation().then(res => {tempData = res.data})

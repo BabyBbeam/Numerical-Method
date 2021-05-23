@@ -1,5 +1,6 @@
 const axios = require('axios')
 
+//ดึงโจทย์จาก db.json ของเราที่อยู่ใน github 
 const api = axios.create({
     baseURL : "https://my-json-server.typicode.com/BabyBbeam/Numerical-Method/"
 })

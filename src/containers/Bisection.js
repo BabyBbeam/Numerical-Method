@@ -29,7 +29,7 @@ class Bisection extends Component {
         iterationData : [],
         apiData : []
     }
-
+  //เรียกfcalbiนำผลลัพธ์ที่ได้มาเก็บในiterเพื่อแสดงผลบนหน้าเว็บ
     onClickCalculate = e =>{
         try{
             this.setState({iterationData:calBisection(this.state.fx, this.state.xl, this.state.xr, this.state.error)})
@@ -39,7 +39,7 @@ class Bisection extends Component {
             console.log("error")
         }
     }
-
+     //ดึงโจทย์
     async getData(){
         let tempData = null
         await apis.getAllRoe().then(res => {tempData = res.data})
