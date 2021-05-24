@@ -74,7 +74,7 @@ class NewtonDevide extends Component {
         })
     }
 
-  //รับค่าx
+  //รับค่าx ที่ต้องการหาผลลัพธ์
     onChangeX = e =>{
         this.setState({
             x : e.target.value

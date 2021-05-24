@@ -12,7 +12,7 @@ class Bisection extends Component {
         xr : null,
         error : null,
         isCal : false,
-        iterationColumns : [
+        iterationColumns : [ //เก็บเป็นตารางไปแสดงบนหน้าเว็บ
             {
                 title: 'Iteration',
                 dataIndex: 'iteration'
