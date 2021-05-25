@@ -1,1 +1,3 @@
-import axi
+const axios = require('axios')
+
+cost get
