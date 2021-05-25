@@ -6,6 +6,16 @@ const api = axios.create({
 })
 
 const getAllRoe = () => api.get('/root-of-equation')
+
+// function getAllRoe(){
+//     return  api.get('/root-of-equation')
+// }
+
+// getAllRoe = function (){
+//     return  api.get('/root-of-equation')
+// }
+
+// console.log("function beam", getAllRoe)
 const getAllMatrix = () => api.get('/matrix')
 const getAllInterpolation = () => api.get('/interpolation')
 const getAllRegression = () => api.get('/regression')
