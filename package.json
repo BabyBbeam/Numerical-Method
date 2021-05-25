@@ -13,6 +13,7 @@
     "expect.js": "^0.3.1",
     "json-server": "^0.16.3",
     "mathjs": "^9.3.0",
+    "ml-regression-multivariate-linear": "^2.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",

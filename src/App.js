@@ -19,6 +19,7 @@ import NewtonDivide from "./containers/NewtonDivide";
 import Lagrange from "./containers/Lagrange";
 import Spline from "./containers/Spline";
 import PolynomialRegression from "./containers/PolynomialRegression";
+import Multiregression from "./containers/multiregress";
 
 class App extends React.Component {
   render() {
@@ -48,6 +49,7 @@ class App extends React.Component {
               <Route exact path="/lagrange" component={Lagrange} />
               <Route exact path="/spline" component={Spline} />
               <Route exact path="/polynomial-regression" component={PolynomialRegression} />
+              <Route exact path="/multi-linear-regression" component={Multiregression} />
               <Route exact path="/swagger" component={APIDoc} />
               <Route exact path="*" render={() => <div>Error 404 Not Found.</div>} />
             </Switch>
